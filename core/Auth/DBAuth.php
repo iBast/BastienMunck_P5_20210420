@@ -11,9 +11,9 @@ use Core\Database\Database;
  */
 class DBAuth
 {
-    public function __construct(Database $db)
+    public function __construct(Database $database)
     {
-        $this->db = $db;
+        $this->database = $database;
     }
 
     public function getUserId()
@@ -34,7 +34,6 @@ class DBAuth
     {
 
         $user = $this->db->prepare('SELECT * FROM users WHERE username = ?', [$username], NULL, true);
-        var_dump($user);
         if ($user) {
             if ($user->password === sha1($password)) {
                 $_SESSION['auth'] = $user->id;

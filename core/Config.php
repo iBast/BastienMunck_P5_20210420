@@ -15,7 +15,7 @@ class Config
 
     public static function getInstance()
     {
-        if (is_null(self::$_instance)) {
+        if (self::$_instance === null) {
             self::$_instance = new Config();
         }
         return self::$_instance;
@@ -23,7 +23,7 @@ class Config
 
     public function __construct()
     {
-        $this->settings = require dirname(__DIR__) . '/config/config.php';
+        $this->settings = require '../config/config.php';
     }
 
     public function get($key)
