@@ -14,12 +14,12 @@ class Table
 {
 
     protected $table;
-    protected $db;
+    protected $database;
 
-    public function __construct(MysqlDatabase $db)
+    public function __construct(MysqlDatabase $database)
     {
-        $this->db = $db;
-        if (is_null($this->table)) {
+        $this->database = $database;
+        if ($this->table === null) {
             $parts = explode('\\', get_class($this));
             $class_name = end($parts);
             $this->table = strtolower(str_replace('Table', '', $class_name)) . 's';
@@ -33,12 +33,12 @@ class Table
     }
 
 
-    public function find($id)
+    public function find($colId)
     {
-        return $this->query("SELECT * FROM {$this->table} WHERE id = ?", [$id], true);
+        return $this->query("SELECT * FROM {$this->table} WHERE id = ?", [$colId], true);
     }
 
-    public function update($id, $fields)
+    public function update($colId, $fields)
     {
         $sql_parts = [];
         $attributes = [];
@@ -46,7 +46,7 @@ class Table
             $sql_parts[] = "$k = ?";
             $attributes[] = $v;
         }
-        $attributes[] = $id;
+        $attributes[] = $colId;
         $sql_part = implode(', ', $sql_parts);
         return $this->query("UPDATE {$this->table} SET $sql_part WHERE id = ?", $attributes, true);
     }
@@ -70,13 +70,12 @@ class Table
                 str_replace('Table', 'Entity', get_class($this)),
                 $one
             );
-        } else {
-            return $this->db->query(
-                $statement,
-                str_replace('Table', 'Entity', get_class($this)),
-                $one
-            );
         }
+        return $this->db->query(
+            $statement,
+            str_replace('Table', 'Entity', get_class($this)),
+            $one
+        );
     }
     public function create($fields)
     {
@@ -90,8 +89,8 @@ class Table
         return $this->query("INSERT INTO {$this->table} SET $sql_part", $attributes, true);
     }
 
-    public function delete($id)
+    public function delete($colId)
     {
-        return $this->query("DELETE FROM {$this->table} WHERE id = ?", [$id], true);
+        return $this->query("DELETE FROM {$this->table} WHERE id = ?", [$colId], true);
     }
 }

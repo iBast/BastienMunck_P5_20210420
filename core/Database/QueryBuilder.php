@@ -28,11 +28,11 @@ class QueryBuilder
     }
     public function from($table, $alias = null)
     {
-        if (is_null($alias)) {
+        if ($alias === null) {
             $this->from[] = $table;
-        } else {
-            $this->from[] = "$table AS $alias";
         }
+        $this->from[] = "$table AS $alias";
+
         return $this;
     }
     public function __toString()

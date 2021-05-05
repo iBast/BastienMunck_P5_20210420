@@ -16,7 +16,7 @@ class App
 
     public static function getInstance()
     {
-        if (is_null(self::$_instance)) {
+        if (self::$_instance === null) {
             self::$_instance = new App();
         }
         return self::$_instance;
@@ -40,8 +40,8 @@ class App
      */
     public function getDb()
     {
-        $config = Config::getInstance(ROOT . '/config/config.php');
-        if (is_null($this->db_instance)) {
+        $config = Config::getInstance('../config/config.php');
+        if ($this->db_instance === null) {
             $this->db_instance = new MysqlDatabase($config->get('db_name'), $config->get('db_user'), $config->get('db_pass'), $config->get('db_host'));
         }
         return $this->db_instance;
@@ -55,9 +55,9 @@ class App
     public static function load()
     {
         session_start();
-        require ROOT . '/app/Autoloader.php';
+        require '../app/Autoloader.php';
         \App\Autoloader::register();
-        require ROOT . '/core/Autoloader.php';
+        require '../core/Autoloader.php';
         \Core\Autoloader::register();
     }
 }
