@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 use Core\Config;
 use Core\Database\MysqlDatabase;
 
@@ -48,16 +50,12 @@ class App
     }
 
     /**
-     * Method load
+     * Method run
      * 
-     * require the app & core autoloaders
+     * 
      */
-    public static function load()
+    public static function run()
     {
         session_start();
-        require '../app/Autoloader.php';
-        \App\Autoloader::register();
-        require '../core/Autoloader.php';
-        \Core\Autoloader::register();
     }
 }

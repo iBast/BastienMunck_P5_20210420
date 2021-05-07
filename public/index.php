@@ -1,12 +1,15 @@
 <?php
 
-require '../app/App.php';
-App::load();
+use Core\Http\Request;
+
+require_once '../vendor/autoload.php';
+$app = new App\App;
+$app->run();
 
 
-
-if (isset($_GET['p'])) {
-    $page = $_GET['p'];
+$request = new Request($_GET, $_POST);
+if ($request->getGetValue('p') !== null) {
+    $page = $request->getGetValue('p');
 } else {
     $page = 'posts.index';
 }
