@@ -46,18 +46,4 @@ class App
         }
         return $this->db_instance;
     }
-
-    /**
-     * Method load
-     * 
-     * require the app & core autoloaders
-     */
-    public static function load()
-    {
-        session_start();
-        require '../app/Autoloader.php';
-        \App\Autoloader::register();
-        require '../core/Autoloader.php';
-        \Core\Autoloader::register();
-    }
 }

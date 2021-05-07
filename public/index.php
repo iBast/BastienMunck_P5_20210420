@@ -2,8 +2,8 @@
 
 use Core\Http\Request;
 
-require_once '../app/App.php';
-App::load();
+require_once '../vendor/autoload.php';
+
 
 
 $request = new Request($_GET, $_POST);
