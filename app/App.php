@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 use Core\Config;
 use Core\Database\MysqlDatabase;
 
@@ -45,5 +47,15 @@ class App
             $this->db_instance = new MysqlDatabase($config->get('db_name'), $config->get('db_user'), $config->get('db_pass'), $config->get('db_host'));
         }
         return $this->db_instance;
+    }
+
+    /**
+     * Method run
+     * 
+     * 
+     */
+    public static function run()
+    {
+        session_start();
     }
 }

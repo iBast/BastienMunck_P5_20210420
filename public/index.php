@@ -3,7 +3,8 @@
 use Core\Http\Request;
 
 require_once '../vendor/autoload.php';
-
+$app = new App\App;
+$app->run();
 
 
 $request = new Request($_GET, $_POST);
