@@ -64,14 +64,14 @@ class Table
     public function query($statement, $attributes = null, $one = false)
     {
         if ($attributes) {
-            return $this->db->prepare(
+            return $this->database->prepare(
                 $statement,
                 $attributes,
                 str_replace('Table', 'Entity', get_class($this)),
                 $one
             );
         }
-        return $this->db->query(
+        return $this->database->query(
             $statement,
             str_replace('Table', 'Entity', get_class($this)),
             $one
