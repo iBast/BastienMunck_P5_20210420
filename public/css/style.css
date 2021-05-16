@@ -6,7 +6,7 @@
 body {
   background-color: #fffcfa;
   color: #597080;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   position: relative;
 }
 
@@ -17,8 +17,49 @@ header {
   flex-wrap: wrap;
 }
 
+nav a {
+  font-size: x-large;
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.5em;
+  color: #597080;
+}
+
+nav a:hover {
+  color: #ffbd66;
+}
+
+.blog-post a {
+  color: #ffbd66;
+}
+
+.blog-post a:hover {
+  color: #ffdeb3;
+}
+
+footer a {
+  color: #ffdeb3;
+}
+
+footer a:hover {
+  color: #ffbd66;
+}
+
+a {
+  text-decoration: none;
+  color: #597080;
+}
+
+.profil a {
+  color: #fffcfa;
+}
+
+.profil a:hover {
+  color: #ffdeb3;
+}
+
 #logo {
-  margin-left: .5em;
+  margin-left: 0.5em;
   vertical-align: middle;
   font-size: x-large;
   text-decoration: none;
@@ -37,18 +78,6 @@ nav ul {
   align-items: center;
 }
 
-nav a {
-  font-size: x-large;
-  text-decoration: none;
-  display: inline-block;
-  padding: .5em;
-  color: #597080;
-}
-
-nav a:hover {
-  color: #ffbd66;
-}
-
 .menu {
   text-align: center;
   flex-basis: 100%;
@@ -58,10 +87,15 @@ nav a:hover {
   opacity: 0;
   overflow: hidden;
   padding: 0 2em;
-  transition: margin .5s ease-in-out, max-height .5s ease-in-out, opacity .3s .1s ease-in-out;
+  transition: margin 0.5s ease-in-out, max-height 0.5s ease-in-out, opacity 0.3s 0.1s ease-in-out;
 }
 
-#menu-checkbox:checked~.menu {
+.menu-bouton {
+  padding: 0.5em;
+  text-align: right;
+}
+
+#menu-checkbox:checked ~ .menu {
   margin: 1em 0;
   max-height: 500px;
   opacity: 1;
@@ -74,13 +108,8 @@ nav a:hover {
   opacity: 0;
 }
 
-#menu-checkbox:focus+.menu-bouton {
+#menu-checkbox:focus + .menu-bouton {
   outline: #ffbd66 auto 5px;
-}
-
-.menu-bouton {
-  padding: .5em;
-  text-align: right;
 }
 
 .hero-banner img {
@@ -111,12 +140,11 @@ footer ul {
   list-style-type: none;
 }
 
-footer a {
-  color: #ffdeb3;
-}
-
-footer a:hover {
-  color: #ffbd66;
+details {
+  width: 95%;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
 }
 
 footer details {
@@ -162,7 +190,6 @@ h1 {
   margin: 8px;
   text-decoration: none;
   border-radius: 5px;
-  display: block;
   height: 2.2em;
   display: flex;
   justify-content: center;
@@ -181,11 +208,6 @@ h1 {
   color: #597080;
 }
 
-a {
-  text-decoration: none;
-  color: #597080;
-}
-
 .btn-main:hover {
   background-color: #ffdeb3;
   border-color: #ffdeb3;
@@ -197,7 +219,7 @@ a {
 }
 
 .Ligne-2 {
-  font-size: .6em;
+  font-size: 0.6em;
   color: #ffbd66;
 }
 
@@ -262,9 +284,7 @@ h2 {
   color: #597080;
 }
 
-input[type=email],
-input[type=password],
-input[type=text] {
+input[type="email"], input[type="password"], input[type="text"] {
   background-color: #fffcfa;
   border: 1px solid #ffbd66;
   font-size: large;
@@ -285,7 +305,7 @@ textarea {
   color: #403f3e;
 }
 
-input[type=submit] {
+input[type="submit"] {
   background-color: #ffbd66;
   color: #597080;
   border-radius: 5px;
@@ -296,14 +316,11 @@ input[type=submit] {
   max-height: 3em;
 }
 
-input[type=submit]:hover {
+input[type="submit"]:hover {
   background-color: #ffdeb3;
 }
 
-input:active,
-input:focus,
-textarea:active,
-textarea:focus {
+input:active, input:focus, textarea:active, textarea:focus {
   outline: 0;
   border: 1px solid #ffbd66;
 }
@@ -329,13 +346,6 @@ textarea:focus {
   border-radius: 50%;
 }
 
-details {
-  width: 95%;
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
-}
-
 summary {
   color: #fffcfa;
   font-weight: 700;
@@ -347,14 +357,6 @@ details summary {
   cursor: pointer;
 }
 
-.profil a {
-  color: #fffcfa;
-}
-
-.profil a:hover {
-  color: #ffdeb3;
-}
-
 .articles {
   display: flex;
   flex-wrap: wrap;
@@ -363,7 +365,7 @@ details summary {
 
 .article {
   border: 2px solid #ffbd66;
-  border-radius: 5PX;
+  border-radius: 5px;
   padding: 10px;
   margin: 10px;
   text-align: justify;
@@ -399,14 +401,6 @@ article h2 {
 .comment {
   padding-top: 30px;
   text-align: justify;
-}
-
-.blog-post a {
-  color: #ffbd66;
-}
-
-.blog-post a:hover {
-  color: #ffdeb3;
 }
 
 .blog-post textarea {
@@ -446,10 +440,12 @@ form {
   color: #4b802d;
 }
 
-@media screen and (min-width :1050px) {
+@media screen and (min-width: 1050px) {
+
   body {
     padding-top: 15px;
   }
+
   .menu {
     flex-basis: auto;
     margin: 0;
@@ -458,58 +454,71 @@ form {
     padding: 0;
     visibility: visible;
   }
-  #menu-checkbox,
-  .menu-bouton {
+
+  #menu-checkbox, .menu-bouton {
     display: none;
   }
+
   nav li {
     margin-right: 50px;
   }
+
   nav ul {
     display: flex;
   }
+
   nav a {
     padding: 0;
   }
+
   .hero-section {
     margin-top: auto;
   }
+
   .hero-banner {
     max-width: 40%;
     margin-top: auto;
   }
+
   .hero-banner img {
     max-width: 450px;
   }
+
   .main-title {
     max-width: 55%;
     margin-top: auto;
     margin-bottom: auto;
   }
+
   .main-title:nth-child(2) {
     order: 1;
   }
+
   .hero-banner:nth-child(1) {
     order: 2;
   }
+
   details {
     content: attr(data-open);
     max-width: 30%;
   }
+
   .main-btn:nth-child(1) {
     order: 2;
   }
+
   .coordonnees:nth-child(2) {
     order: 1;
   }
+
   .article {
     max-width: 29%;
   }
+
 }
 
-@media screen and (max-width :740px) {
-  .form-mail,
-  .form-nom {
+@media screen and (max-width: 740px) {
+  .form-mail, .form-nom {
     width: 90%;
   }
 }
