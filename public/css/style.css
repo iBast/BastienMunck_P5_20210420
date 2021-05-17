@@ -284,8 +284,8 @@ h2 {
   color: #597080;
 }
 
-input[type="email"], 
-input[type="password"], 
+input[type="email"],
+input[type="password"],
 input[type="text"] {
   background-color: #fffcfa;
   border: 1px solid #ffbd66;
@@ -322,9 +322,9 @@ input[type="submit"]:hover {
   background-color: #ffdeb3;
 }
 
-input:active, 
-input:focus, 
-textarea:active, 
+input:active,
+input:focus,
+textarea:active,
 textarea:focus {
   outline: 0;
   border: 1px solid #ffbd66;
@@ -448,7 +448,7 @@ form {
 @media screen and (min-width: 1050px) {
 
   body {
-    padding-top: 15px;
+  padding-top: 15px;
   }
 
   .menu {
@@ -460,7 +460,7 @@ form {
     visibility: visible;
   }
 
-  #menu-checkbox, 
+  #menu-checkbox,
   .menu-bouton {
     display: none;
   }
@@ -523,7 +523,7 @@ form {
 }
 
 @media screen and (max-width: 740px) {
-  .form-mail, 
+  .form-mail,
   .form-nom {
     width: 90%;
   }

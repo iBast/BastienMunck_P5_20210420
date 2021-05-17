@@ -31,10 +31,12 @@ class Form
         return isset($this->data[$index]) ? $this->data[$index] : null;
     }
 
-    public function input(string $name, string $label, array $options = [])
+    public function input(string $name, ?string $label, array $options = [])
     {
         $type = isset($options['type']) ? $options['type'] : 'text';
-        return $this->surround($label . ' : <br> <input type="' . $type . '" name="' . $name . '" value="' . htmlspecialchars($this->getValue($name)) . '">');
+        $value = isset($options['value']) ? $options['value'] : $this->getValue($name);
+        $label = isset($label) ? $label . ' : <br>' : '';
+        return $this->surround($label . ' <input type="' . $type . '" name="' . $name . '" value="' . htmlspecialchars($value) . '">');
     }
 
     public function submit($label)

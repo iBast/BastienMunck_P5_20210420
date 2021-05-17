@@ -3,6 +3,7 @@
 namespace App;
 
 use Core\Config;
+use Core\Http\Session;
 use Core\Database\MysqlDatabase;
 
 /**

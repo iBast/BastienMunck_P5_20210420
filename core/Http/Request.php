@@ -49,28 +49,6 @@ class Request
         unset($this->_post[$key]);
     }
 
-    public function getSessionValue($key, $type = self::TYPE_STRING)
-    {
-        return isset($_SESSION[$key]) ? $this->securise($_SESSION[$key], $type) : null;
-    }
-    public function hasSession(): bool
-    {
-        return isset($_SESSION);
-    }
-    public function hasSessionValue($key): bool
-    {
-        return isset($_SESSION[$key]);
-    }
-    public function unsetSessionValue($key)
-    {
-        unset($_SESSION[$key]);
-    }
-    public function setSessionValue($key, $value)
-    {
-        $_SESSION[$key] = $value;
-    }
-
-
     private function securise($data, $type = self::TYPE_STRING)
     {
         $retour = null;
