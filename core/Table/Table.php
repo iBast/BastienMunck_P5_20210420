@@ -33,9 +33,9 @@ class Table
     }
 
 
-    public function find($colId)
+    public function find($colId, ?string $field = 'id')
     {
-        return $this->query("SELECT * FROM {$this->table} WHERE id = ?", [$colId], true);
+        return $this->query("SELECT * FROM {$this->table} WHERE $field = ?", [$colId], true);
     }
 
     public function update($colId, $fields)

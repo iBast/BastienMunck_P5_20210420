@@ -34,7 +34,7 @@ class Form
     public function input(string $name, string $label, array $options = [])
     {
         $type = isset($options['type']) ? $options['type'] : 'text';
-        return $this->surround($label . ' : <br> <input type="' . $type . '" name="' . $name . '" value="' . $this->getValue($name) . '">');
+        return $this->surround($label . ' : <br> <input type="' . $type . '" name="' . $name . '" value="' . htmlspecialchars($this->getValue($name)) . '">');
     }
 
     public function submit($label)

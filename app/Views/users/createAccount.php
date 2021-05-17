@@ -2,13 +2,13 @@
     <h1>Créer un compte</h1>
     <?php if ($errorMessage) : ?>
         <div class="alert alert-danger">
-            <?= $errorMessage; ?>
+            <b>Erreur(s) :</b><?= $errorMessage; ?>
             <br>
         </div>
     <?php endif; ?>
     <?php if ($successMessage) : ?>
         <div class="alert alert-success">
-            <?= $successMessage; ?>
+            <?= htmlspecialchars($successMessage); ?>
             <br>
         </div>
     <?php endif; ?>

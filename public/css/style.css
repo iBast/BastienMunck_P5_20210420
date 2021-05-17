@@ -58,6 +58,11 @@ a {
   color: #ffdeb3;
 }
 
+#logo a {
+  text-decoration: none;
+  color: #597080;
+}
+
 #logo {
   margin-left: 0.5em;
   vertical-align: middle;
@@ -66,11 +71,6 @@ a {
   display: inline-block;
   margin-top: auto;
   margin-bottom: auto;
-}
-
-#logo a {
-  text-decoration: none;
-  color: #597080;
 }
 
 nav ul {
@@ -284,7 +284,9 @@ h2 {
   color: #597080;
 }
 
-input[type="email"], input[type="password"], input[type="text"] {
+input[type="email"], 
+input[type="password"], 
+input[type="text"] {
   background-color: #fffcfa;
   border: 1px solid #ffbd66;
   font-size: large;
@@ -320,7 +322,10 @@ input[type="submit"]:hover {
   background-color: #ffdeb3;
 }
 
-input:active, input:focus, textarea:active, textarea:focus {
+input:active, 
+input:focus, 
+textarea:active, 
+textarea:focus {
   outline: 0;
   border: 1px solid #ffbd66;
 }
@@ -455,7 +460,8 @@ form {
     visibility: visible;
   }
 
-  #menu-checkbox, .menu-bouton {
+  #menu-checkbox, 
+  .menu-bouton {
     display: none;
   }
 
@@ -514,11 +520,11 @@ form {
   .article {
     max-width: 29%;
   }
-
 }
 
 @media screen and (max-width: 740px) {
-  .form-mail, .form-nom {
+  .form-mail, 
+  .form-nom {
     width: 90%;
   }
 }
