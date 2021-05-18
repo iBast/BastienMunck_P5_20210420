@@ -4,6 +4,14 @@ return array(
     "db_user" => "root",
     "db_pass" => "root",
     "db_host" => "localhost",
-    "db_name" => "blog"
+    "db_name" => "blog",
+    "smtp_username" => "",
+    "smtp_mail" => "",
+    "smtp_pass" => "",
+    "smtp_alias" => "",
+    "smtp_server" => "",
+    "smtp_port" => "",
+    "smtp_encrypt" => null, 
+
 
 );

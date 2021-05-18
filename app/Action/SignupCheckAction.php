@@ -2,7 +2,6 @@
 
 namespace App\Action;
 
-use App\App;
 use App\Action\CheckAction;
 
 

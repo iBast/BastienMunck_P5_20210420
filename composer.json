@@ -13,6 +13,7 @@
         }
     },
     "require": {
-        "composer/composer": "^2.0"
+        "composer/composer": "^2.0",
+        "swiftmailer/swiftmailer": "^6.0"
     }
 }

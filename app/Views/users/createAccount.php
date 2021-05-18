@@ -16,7 +16,7 @@
     <?php endif; ?>
     <form action="#" method="post">
         <?= $form->input('token', null, ['type' => 'hidden', 'value' => $token]); ?>
-        <?= $form->input('name', 'Nom'); ?>
+        <?= $form->input('name', 'Nom d\'utilisateur'); ?>
         <br>
         <?= $form->input('email', 'Email', ['type' => 'email']); ?>
         <br>
