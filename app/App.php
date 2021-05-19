@@ -28,7 +28,7 @@ class App
     /**
      * Method getTable
      * 
-     * Pass the table name to core/Table.php
+     * Pass the table name extends from core/Table.php
      */
     public function getTable($name)
     {

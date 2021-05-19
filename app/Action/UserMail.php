@@ -38,7 +38,7 @@ class UserMail
 Vous venez de vous inscrire sur notre blog. Afin de pouvoir profiter d\'encore plus de fonctionnalités 
 veuillez confirmer votre adresse email en suivant le lien ci-dessous : 
 
-http://bastienmunck.fr ' . $userToken . '
+http://localhost:8888/BastienMunck_P5_20210420/public/?p=users.verifyToken&t=' . $userToken . '&username=' . $userName . '
 
 Nous vous remercions de votre inscription.
 A bientôt sur le blog !
