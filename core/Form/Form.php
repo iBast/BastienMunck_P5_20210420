@@ -1,7 +1,8 @@
 <?php
 
-namespace Core\HTML;
+namespace Core\Form;
 
+use Core\Http\Session;
 
 /**
  * 
@@ -11,6 +12,7 @@ class Form
 
     protected $data;
     public $surround = 'p';
+    private $token;
 
 
     public function __construct($data = array())
@@ -41,6 +43,17 @@ class Form
 
     public function submit($label)
     {
-        return $this->surround('<input type="submit" value="' . $label . '">');
+        $this->newToken();
+        $submit = $this->input('token', null, ['type' => 'hidden', 'value' => $this->token]);
+        $submit .= '<br>';
+        $submit .= $this->input('submit', null, ['type' => 'submit', 'value' => $label]);
+        return $submit;
+    }
+
+    private function newToken()
+    {
+        $this->token = bin2hex(random_bytes(16));
+        $session = new Session;
+        $session->set('token', $this->token);
     }
 }

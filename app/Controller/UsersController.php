@@ -2,13 +2,8 @@
 
 namespace App\Controller;
 
-
-use Core\Http\Request;
 use App\Action\SignupCheckAction;
 use App\Action\UserMail;
-use App\Table\UserTable;
-use Core\Http\Session;
-use App\App;
 
 
 class UsersController extends AppController
@@ -20,63 +15,54 @@ class UsersController extends AppController
     }
     public function createAccount()
     {
-        $post = new Request($_GET, $_POST);
-        $errorMessage = null;
-        $successMessage = null;
-        $session = new Session;
-        $token = bin2hex(random_bytes(16));
-
-        $signupCheckAction = new SignupCheckAction($post, $session);
-        if ($post->hasPost()) {
-
+        $signupCheckAction = new SignupCheckAction($this->request, $this->session);
+        if ($this->request->hasPost()) {
             $errorMessage = $signupCheckAction->getErrorMessage();
-
+            $this->flash->danger($errorMessage);
             if ($errorMessage == null) {
-                $pass_hash = password_hash(htmlspecialchars($post->getPostValue('password')), PASSWORD_DEFAULT);
+                $pass_hash = password_hash(htmlspecialchars($this->request->getPostValue('password')), PASSWORD_DEFAULT);
                 $user = [
-                    'name' => htmlspecialchars($post->getPostValue('name')),
-                    'email' => htmlspecialchars($post->getPostValue('email')),
+                    'name' => htmlspecialchars($this->request->getPostValue('name')),
+                    'email' => htmlspecialchars($this->request->getPostValue('email')),
                     'password' => $pass_hash,
-                    'token' => $token
+                    'token' => $this->session->get('token')
                 ];
                 $result = $this->user->create($user);
                 if ($result) {
-                    $successMessage = "Le compte a été crée";
+                    $this->flash->success("Votre compte a bien été créé <br> Pour utiliser toutes les fonctionnailtées du site, veuillez valier le mail d'inscription.");
                     $mail = new UserMail;
                     $mail->signupMail($user['email'], $user['name'], $user['token']);
-                    return $this->render('users.login', compact('successMessage'));
+                    $this->session->delete('token');
+                    return $this->login();
                 }
             }
         }
-
-        $form = new \Core\HTML\Form($_POST);
-        $this->render('users.createAccount', compact('form', 'errorMessage', 'successMessage', 'session', 'token'));
-        $session->set('token', $token);
+        $form = new \Core\Form\Form($_POST);
+        $this->render('users.createAccount', compact('form'));
     }
 
     public function login()
     {
-        $this->render('users.login');
+        $form = new \Core\Form\Form();
+        $this->render('users.login', compact('form'));
     }
 
     public function verifyToken()
     {
-        $errorMessage = null;
-        $get = new Request($_GET, $_POST);
-        if ($get->getGetValue('t') == null & $get->getGetValue('username') == null) {
-
-            $errorMessage = "Aucune clé de Vérification n'a été envoyée";
+        if ($this->request->getGetValue('t') == null & $this->request->getGetValue('username') == null) {
+            $this->flash->danger("Aucune clé de Vérification n'a été envoyée");
         }
-        $user = $this->user->find($get->getGetValue('username'), 'name');
-        if ($user['token'] === $get->getGetValue('t')) {
-            $this->user->update($user['id'], [
+        $user = $this->user->find($this->request->getGetValue('username'), 'name');
+        var_dump($user);
+        if ($user->token === $this->request->getGetValue('t')) {
+            $this->user->update($user->id, [
                 'verifiedAt' => date("Y-m-d H:i:s"),
                 'token' => null
             ]);
-            $successMessage = "Le compte a bien été validé. Veuillez vous connecter";
-            return $this->render('users.login', compact('successMessage'));
+            $this->flash->success("Le compte a bien été validé. Veuillez vous connecter");
+            return $this->login();
         }
-        $errorMessage = "Aucune action a effectuer";
-        $this->render('users.verifyToken', compact('errorMessage'));
+        $this->flash->danger("Aucune action a effectuer");
+        $this->render('users.verifyToken');
     }
 }

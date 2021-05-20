@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Action;
+namespace Core\Form;
 
 use App\App;
 
-abstract class CheckAction
+abstract class FormCheck
 {
 
     private $post;
@@ -28,9 +28,7 @@ abstract class CheckAction
         return $this->errorMessage;
     }
 
-    protected function check()
-    {
-    }
+
 
     protected function addErrorMessage($message): void
     {

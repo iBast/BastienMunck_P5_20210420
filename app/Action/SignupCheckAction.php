@@ -2,10 +2,10 @@
 
 namespace App\Action;
 
-use App\Action\CheckAction;
+use Core\Form\FormCheck;
+use Core\Form\FormCheckInterface;
 
-
-class SignupCheckAction extends CheckAction
+class SignupCheckAction extends FormCheck implements FormCheckInterface
 {
 
     private $post;
@@ -20,7 +20,7 @@ class SignupCheckAction extends CheckAction
     }
 
 
-    protected function check()
+    public function check()
     {
         if ($this->isSame($this->post->getPostValue('token'), $this->session->get('token')) == false) {
             $this->addErrorMessage("Le formulaire ne correspond pas à celui posté");

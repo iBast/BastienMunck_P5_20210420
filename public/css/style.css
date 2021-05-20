@@ -7,7 +7,7 @@ body {
   background-color: #fffcfa;
   color: #597080;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  position: relative;
+  min-height: 100vh;
 }
 
 header {
@@ -15,6 +15,7 @@ header {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  padding-bottom: 30px;
 }
 
 nav a {
@@ -125,7 +126,8 @@ nav ul {
 }
 
 footer {
-  position: relative;
+  position:relative;
+  left: 0;
   bottom: 0;
   width: 100%;
   background-color: #403f3e;
@@ -169,7 +171,7 @@ h1 {
   margin-left: 25px;
   margin-right: 25px;
   font-size: xx-large;
-  padding-bottom: 20px;
+
 }
 
 .hero-banner {
@@ -426,11 +428,17 @@ form {
   padding-top: 25px;
 }
 
+.flashMessages {
+  width: 90%;
+  margin:  25px auto 25px auto;
+}
+
 .alert {
   padding: 15px;
   border: 1px solid;
   border-radius: 8px;
   text-align: center;
+  margin:  25px auto 25px auto;
 }
 
 .alert-danger {
@@ -444,6 +452,19 @@ form {
   border-color: #c7ffa6;
   color: #4b802d;
 }
+
+.alert-warning {
+  background-color: #FFFE99;
+  border-color: #FFFE99;
+  color: #807F73;
+}
+
+.alert-info {
+  background-color: #A6DAFF;
+  border-color: #A6DAFF;
+  color: #597080;
+}
+
 
 @media screen and (min-width: 1050px) {
 
