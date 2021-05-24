@@ -31,4 +31,10 @@ class Controller
         header('Location:./index.php?p=infos.forbidden');
         exit;
     }
+
+    protected function redirect($url): void
+    {
+        header("Location: " . $url);
+        exit;
+    }
 }

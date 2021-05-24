@@ -1,7 +1,7 @@
 <section class='account-creation'>
     <h1>Créer un compte</h1>
     <form action="#" method="post">
-        <?= $form->input('name', 'Nom d\'utilisateur'); ?>
+        <?= $form->input('username', 'Nom d\'utilisateur'); ?>
         <br>
         <?= $form->input('email', 'Email', ['type' => 'email']); ?>
         <br>

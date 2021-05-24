@@ -25,7 +25,7 @@ class SignupCheckAction extends FormCheck implements FormCheckInterface
         if ($this->isSame($this->post->getPostValue('token'), $this->session->get('token')) == false) {
             $this->addErrorMessage("Le formulaire ne correspond pas à celui posté");
         }
-        if ($this->isEmpty('name')) {
+        if ($this->isEmpty('username')) {
             $this->addErrorMessage('Veuillez saisir un nom');
         }
         if ($this->isEmpty('email')) {
@@ -43,7 +43,7 @@ class SignupCheckAction extends FormCheck implements FormCheckInterface
         if ($this->isUnique('email', 'user') == false) {
             $this->addErrorMessage("L'email est déjà utilisé, merci de vous connecter ou de choisir un autre email");
         }
-        if ($this->isUnique('name', 'user') == false) {
+        if ($this->isUnique('username', 'user') == false) {
             $this->addErrorMessage("Ce nom d'utilisateur est déjà utilisé");
         }
     }

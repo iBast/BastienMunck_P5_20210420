@@ -125,6 +125,10 @@ nav ul {
   max-height: 3.5em;
 }
 
+.container {
+  min-height: 90%;
+}
+
 footer {
   position:relative;
   left: 0;

@@ -29,7 +29,6 @@ abstract class FormCheck
     }
 
 
-
     protected function addErrorMessage($message): void
     {
         $this->error = true;
@@ -53,10 +52,18 @@ abstract class FormCheck
         return false;
     }
 
+    protected function isSamePassword($password, $hash): bool
+    {
+        if (password_verify($password, $hash)) {
+            return true;
+        }
+        return false;
+    }
+
     protected function isUnique(string $key, string $table)
     {
-        $user = App::getInstance()->getTable($table)->find($this->post->getPostValue($key), $key);
-        if ($user != null) {
+        $check = App::getInstance()->getTable($table)->find($this->post->getPostValue($key), $key);
+        if ($check != null) {
             return false;
         }
         return true;

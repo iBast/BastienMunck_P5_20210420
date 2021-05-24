@@ -3,7 +3,6 @@
 namespace App;
 
 use Core\Config;
-use Core\Http\Session;
 use Core\Database\MysqlDatabase;
 
 /**
@@ -50,6 +49,11 @@ class App
         return $this->db_instance;
     }
 
+
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
     /**
      * Method run
      * 

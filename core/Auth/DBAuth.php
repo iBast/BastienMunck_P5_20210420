@@ -3,6 +3,7 @@
 namespace Core\Auth;
 
 use Core\Database\Database;
+use Core\Http\Session;
 
 /**
  * Class DBAuth
@@ -11,15 +12,16 @@ use Core\Database\Database;
  */
 class DBAuth
 {
-    public function __construct(Database $database)
+    public function __construct(Database $database, Session $session)
     {
         $this->database = $database;
+        $this->session = $session;
     }
 
     public function getUserId()
     {
         if ($this->logged()) {
-            return $_SESSION['auth'];
+            return $this->session->get('auth');
         }
 
         return false;
@@ -33,12 +35,10 @@ class DBAuth
     public function login($username, $password)
     {
 
-        $user = $this->db->prepare('SELECT * FROM users WHERE username = ?', [$username], NULL, true);
+        $user = $this->database->prepare('SELECT * FROM users WHERE username = ?', [$username], NULL, true);
         if ($user) {
-            if ($user->password === sha1($password)) {
-                $_SESSION['auth'] = $user->id;
-                return true;
-            }
+            $this->session->set('auth', $user->id);
+            return true;
         }
 
         return false;
@@ -46,6 +46,9 @@ class DBAuth
 
     public function logged()
     {
-        return isset($_SESSION['auth']);
+        if ($this->session->get('auth') != null) {
+            return true;
+        }
+        return false;
     }
 }
