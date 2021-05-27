@@ -1,10 +1,17 @@
 <?php
 
+use Core\Auth\DBAuth;
 use Core\Http\Request;
+use Core\Http\Session;
+use Core\Http\FlashMessage;
 
 try {
     require_once '../vendor/autoload.php';
+    $session = new Session;
+    $flash = new FlashMessage($session);
+    $request = new Request($_GET, $_POST);
     $app = new App\App;
+    $dbAuth = new DBAuth($app->getInstance()->getDb(), $session);
     $app->run();
 
 
@@ -12,7 +19,7 @@ try {
     if ($request->getGetValue('p') !== null) {
         $page = $request->getGetValue('p');
     } else {
-        $page = 'users.createAccount';
+        $page = 'users.signup';
     }
 
     $page = explode('.', $page);
@@ -27,7 +34,7 @@ try {
     }
 
 
-    $controller = new $controller();
+    $controller = new $controller($session, $flash, $request, $dbAuth);
     if (method_exists($controller, $action)) {
         $controller->$action();
     } else {

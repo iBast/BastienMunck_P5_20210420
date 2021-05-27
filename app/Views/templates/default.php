@@ -93,7 +93,11 @@
             </ul>
         </details>
         <details>
-            <summary>Administration</summary>
+            <summary>Mon compte</summary>
+            <a href="?p=users.signup">Inscription</a>
+            <a href="?p=users.login">Connexion</a>
+            <a href="?p=users.logout">Déconnexion</a>
+            <a href="?p=users.account">Mon compte</a>
             <a href="admin.html">Administration</a>
         </details>
     </footer>

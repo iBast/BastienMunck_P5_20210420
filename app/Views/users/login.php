@@ -6,8 +6,7 @@
         <?= $form->input('password', 'Mot de passe', ['type' => 'password', 'required' => 'required', 'autocomplete' => 'current-password']); ?>
         <br>
         <div class="main-btn"> <?= $form->submit(" Se connecter "); ?> </div>
-
-
     </form>
+    <div class="center"><a href="?p=users.recover">Mot de passe oublié ?</a></div>
 
 </section>

@@ -46,4 +46,24 @@ A bientôt sur le blog !
 
         return $mailerInstance->send('Confirmation d\'inscription', $userEmail, $userName, $message);
     }
+
+    public function recoverMail($userEmail, $userName, $newPassword)
+    {
+        $mailerInstance = $this->getMailer();
+
+        $message =
+            'Bonjour ' . $userName . ',
+
+
+Vous avez demandé la réinitalisation de votre mot de passe. Votre nouveau mot de passe est : 
+
+ ' . $newPassword .  '
+
+Il vous sera demandé de modifier ce mot de passe lors de la prochaine connexion.
+
+A bientôt sur le blog !
+        ';
+
+        return $mailerInstance->send('Réinitialisation du mot de passe', $userEmail, $userName, $message);
+    }
 }

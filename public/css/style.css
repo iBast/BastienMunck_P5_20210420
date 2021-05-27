@@ -130,9 +130,10 @@ nav ul {
 }
 
 footer {
-  position:relative;
-  left: 0;
-  bottom: 0;
+  clear: both;
+  position: relative;
+  height: 125px;
+  margin-top: 88px;
   width: 100%;
   background-color: #403f3e;
   color: #ffdeb3;
@@ -413,6 +414,27 @@ article h2 {
   padding-top: 30px;
   text-align: justify;
 }
+
+.center{
+  text-align: center;
+}
+
+table{
+  width: 70%;
+  margin: auto;
+  border-collapse: collapse;
+  margin-top: 25px;
+}
+
+tr{
+  border: 2px solid #ffbd66;
+}
+
+td{
+  padding: 12px;
+}
+
+
 
 .blog-post textarea {
   border: 2px solid #ffbd66;

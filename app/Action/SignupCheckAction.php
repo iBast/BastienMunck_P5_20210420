@@ -8,28 +8,28 @@ use Core\Form\FormCheckInterface;
 class SignupCheckAction extends FormCheck implements FormCheckInterface
 {
 
-    private $post;
-    private $session;
+    protected $post;
+    protected $session;
 
     public function __construct($post, $session)
     {
-        parent::__construct($post);
         $this->post = $post;
         $this->session = $session;
-        $this->check();
+        parent::__construct($this->post, $this->session);
     }
 
 
     public function check()
     {
-        if ($this->isSame($this->post->getPostValue('token'), $this->session->get('token')) == false) {
-            $this->addErrorMessage("Le formulaire ne correspond pas à celui posté");
-        }
+        parent::check();
         if ($this->isEmpty('username')) {
             $this->addErrorMessage('Veuillez saisir un nom');
         }
         if ($this->isEmpty('email')) {
             $this->addErrorMessage('Veuillez saisir un email');
+        }
+        if ($this->isEmail('email') == false) {
+            $this->addErrorMessage('Votre adresse email ne respecte pas le bon format');
         }
         if ($this->isEmpty('password')) {
             $this->addErrorMessage('Veuillez saisir un mot de passe');

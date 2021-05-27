@@ -4,6 +4,7 @@ namespace Core\Auth;
 
 use Core\Database\Database;
 use Core\Http\Session;
+use Core\Http\FlashMessage;
 
 /**
  * Class DBAuth
@@ -12,10 +13,13 @@ use Core\Http\Session;
  */
 class DBAuth
 {
+    private $flash;
+
     public function __construct(Database $database, Session $session)
     {
         $this->database = $database;
         $this->session = $session;
+        $this->flash = new FlashMessage($this->session);
     }
 
     public function getUserId()
@@ -32,23 +36,28 @@ class DBAuth
      * @param $password
      * @return boolean
      */
-    public function login($username, $password)
+    public function login($username)
     {
 
         $user = $this->database->prepare('SELECT * FROM users WHERE username = ?', [$username], NULL, true);
         if ($user) {
             $this->session->set('auth', $user->id);
+            $this->flash->success("Vous êtes connecté");
             return true;
         }
-
-        return false;
     }
 
     public function logged()
     {
+        return $this->session->get('auth') != null;
+    }
+
+    public function logout()
+    {
         if ($this->session->get('auth') != null) {
-            return true;
+            $this->flash->success('Vous avez été déconnecté');
+            return $this->session->delete('auth');
         }
-        return false;
+        $this->flash->danger('Vous devez être connecté pour pouvoir vous déconnecter :)');
     }
 }

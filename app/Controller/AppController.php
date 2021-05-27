@@ -3,11 +3,8 @@
 namespace App\Controller;
 
 use App\App;
-use Core\Auth\DBAuth;
-use Core\Http\Request;
-use Core\Http\Session;
 use Core\Controller\Controller;
-use Core\Http\FlashMessage;
+
 
 class AppController extends Controller
 {
@@ -17,13 +14,13 @@ class AppController extends Controller
     protected $flash;
     protected $dbAuth;
 
-    public function __construct()
+    public function __construct($session, $flash, $request, $dbAuth)
     {
         $this->viewPath = '../app/Views/';
-        $this->request = new Request($_GET, $_POST);
-        $this->session = new Session;
-        $this->flash = new FlashMessage($this->session);
-        $this->dbAuth = new DBAuth(App::getInstance()->getDb(), $this->session);
+        $this->request = $request;
+        $this->session = $session;
+        $this->flash = $flash;
+        $this->dbAuth = $dbAuth;
     }
     public function loadModel($model_name)
     {

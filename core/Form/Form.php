@@ -46,7 +46,8 @@ class Form
     public function submit($label)
     {
         $this->newToken();
-        $submit = $this->input('token', null, ['type' => 'hidden', 'value' => $this->token]);
+        $submit = $this->input('tokenName', null, ['type' => 'hidden', 'value' => $this->tokenName]);
+        $submit .= $this->input('token', null, ['type' => 'hidden', 'value' => $this->token]);
         $submit .= '<br>';
         $submit .= $this->input('submit', null, ['type' => 'submit', 'value' => $label]);
         return $submit;
@@ -55,7 +56,8 @@ class Form
     private function newToken()
     {
         $this->token = bin2hex(random_bytes(16));
+        $this->tokenName = uniqid('token-');
         $session = new Session;
-        $session->set('token', $this->token);
+        $session->set($this->tokenName, $this->token);
     }
 }
