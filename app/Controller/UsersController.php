@@ -3,11 +3,15 @@
 namespace App\Controller;
 
 use App\App;
+use Core\Http\Request;
 use App\Action\UserMail;
+use App\Manager\UserManager;
 use App\Action\LoginCheckAction;
 use App\Action\SignupCheckAction;
 use App\Action\RecoverCheckAction;
-use App\Manager\UserManager;
+use App\Action\ChangePassCheckAction;
+use App\Action\DeleteAccountCheckAction;
+use App\Action\UpdateAccountCheckAction;
 
 class UsersController extends AppController
 {
@@ -21,7 +25,7 @@ class UsersController extends AppController
         $this->request = $request;
         $this->dbAuth = $dbAuth;
         $this->loadModel('user');
-        $this->manager = new UserManager($this->request, $this->session);
+        $this->manager = new UserManager($this->request, $this->session, $this->flash);
     }
     public function signup()
     {
@@ -123,9 +127,9 @@ class UsersController extends AppController
             $errorMessage = $recoverCheckAction->getErrorMessage();
             $this->flash->danger($errorMessage);
             if ($errorMessage == null) {
-                $this->manager->recover($this->request->getPostValue('email'));
+                $this->manager->recover($this->request->getPostValue('email', Request::TYPE_MAIL));
                 $this->flash->success('Un email vous a été envoyé avec un nouveau mot de passe <br> un changement de mot de passe sera exigé à la prochaine connexion');
-                $this->redirect('index.php');
+                $this->redirect('?p=users.changePassword');
             }
         }
         $form = new \Core\Form\Form($this->request->getPost());
@@ -135,20 +139,54 @@ class UsersController extends AppController
     public function changePassword()
     {
         App::getInstance()->setTitle("Modification du mot de passe");
-        $user = $this->user->find($this->request->getGetValue('username'), 'username');
-        if ($user->recoverToken === $this->request->getGetValue('t')) {
-            $this->user->update($user->id, [
-                'password' => password_hash($this->request->getPostValue('password'), PASSWORD_DEFAULT)
-            ]);
-            if ($this->session->get('auth') == null) {
-                $this->flash->success("Le compte a bien été validé. Veuillez vous connecter");
-                return $this->redirect('?p=users.login');
+        if ($this->request->hasPost()) {
+            $changePassCheckAction = new ChangePassCheckAction($this->request, $this->session);
+            $errorMessage = $changePassCheckAction->getErrorMessage();
+            $this->flash->danger($errorMessage);
+            if ($errorMessage == null) {
+                $this->manager->passwordUpdate($this->request->getPostValue('email'), Request::TYPE_MAIL);
+                $this->flash->success('Votre mot de passe a été modifié');
+                $this->redirect('?p=users.account');
             }
-            $this->flash->success("Le compte a bien été validé.");
-            return $this->redirect('?p=users.account');
         }
-
         $form = new \Core\Form\Form($this->request->getPost());
-        $this->render('users.reset', compact('form'));
+        $this->render('users.changePassword', compact('form'));
+    }
+
+    public function updateAccount()
+    {
+        App::getInstance()->setTitle("Modification du compte");
+        $user = $this->user->find($this->session->get('auth'));
+
+        if ($this->request->hasPost()) {
+            $updateAccountCheckAction = new UpdateAccountCheckAction($this->request, $this->session);
+            $errorMessage = $updateAccountCheckAction->getErrorMessage();
+            $this->flash->danger($errorMessage);
+            if ($errorMessage == null) {
+                $this->manager->updateAccount();
+                $this->redirect('?p=users.account');
+            }
+        }
+        $form = new \Core\Form\Form();
+        $this->render('users.updateAccount', compact('form', 'user'));
+    }
+
+    public function deleteAccount()
+    {
+        App::getInstance()->setTitle("Suppression du compte");
+        $user = $this->user->find($this->session->get('auth'));
+
+        if ($this->request->hasPost()) {
+            $deleteAccountCheckAction = new DeleteAccountCheckAction($this->request, $this->session);
+            $errorMessage = $deleteAccountCheckAction->getErrorMessage();
+            $this->flash->danger($errorMessage);
+            if ($errorMessage == null) {
+                $this->manager->deleteAccount();
+                $this->flash->success('Votre compte a été supprimé');
+                $this->redirect('index.php');
+            }
+        }
+        $form = new \Core\Form\Form();
+        $this->render('users.deleteAccount', compact('form'));
     }
 }

@@ -6,7 +6,7 @@
         <td> <img src="../public/img/avatar/<?= $user->profilePic; ?>" alt="Photo de profil" height="100px"></td>
     </tr>
     <tr>
-        <td>Nom</td>
+        <td>Nom d'utilisateur</td>
         <td><?= $user->username; ?></td>
     </tr>
     <tr>

@@ -38,9 +38,10 @@ class Form
         $type = isset($options['type']) ? $options['type'] : 'text';
         $autocomplete = isset($options['autocomplete']) ? 'autocomplete="' . $options['autocomplete'] . '"' : '';
         $required = isset($options['required']) ? $options['required'] : '';
+        $accept = isset($options['accept']) ? 'accept="' . $options['accept'] . '"' : '';
         $value = isset($options['value']) ? $options['value'] : $this->getValue($name);
         $label = isset($label) ? $label . ' : <br>' : '';
-        return $this->surround($label . ' <input type="' . $type . '" name="' . $name . '" value="' . htmlspecialchars($value) . '" ' . $autocomplete . $required . '>');
+        return $this->surround($label . ' <input type="' . $type . '" name="' . $name . '" value="' . htmlspecialchars($value) . '" ' . $autocomplete . $required . $accept . '>');
     }
 
     public function submit($label)

@@ -92,7 +92,7 @@
                 <li><a href="index.html#contact">Gestion des données personneles</a></li>
             </ul>
         </details>
-        <details>
+        <details open>
             <summary>Mon compte</summary>
             <a href="?p=users.signup">Inscription</a>
             <a href="?p=users.login">Connexion</a>

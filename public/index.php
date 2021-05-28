@@ -15,7 +15,6 @@ try {
     $app->run();
 
 
-    $request = new Request($_GET, $_POST);
     if ($request->getGetValue('p') !== null) {
         $page = $request->getGetValue('p');
     } else {

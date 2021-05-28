@@ -5,7 +5,6 @@ namespace App\Action;
 use App\App;
 use Core\Form\FormCheck;
 use Core\Form\FormCheckInterface;
-use App\Controller\UsersController;
 
 class LoginCheckAction extends FormCheck implements FormCheckInterface
 {

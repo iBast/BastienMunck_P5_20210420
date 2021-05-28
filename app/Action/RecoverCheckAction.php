@@ -20,6 +20,7 @@ class RecoverCheckAction extends FormCheck implements FormCheckInterface
 
     public function check()
     {
+        parent::check();
         if ($this->isUnique('email', 'user')) {
             $this->addErrorMessage('L\'adresse mail n\'existe pas');
         }
