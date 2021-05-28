@@ -1,5 +1,5 @@
 <h1>Votre compte</h1>
-<form action="#" method="post">
+<form action="#" method="post" enctype="multipart/form-data">
     <table class="profiletable">
         <tr>
             <td>Photo de profil</td>
@@ -7,7 +7,7 @@
         </tr>
         <tr>
             <td>Nouvelle photo de profil</td>
-            <td> <?= $form->input('pic', null, ['type' => 'file', 'accept' => 'image/png, image/jpeg, image/jpg']); ?></td>
+            <td> <?= $form->input('pic', null, ['type' => 'file', 'accept' => 'image/jpeg, image/jpg']); ?></td>
         </tr>
         <tr>
             <td>Nom d'utilisateur</td>

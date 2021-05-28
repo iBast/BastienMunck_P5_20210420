@@ -35,5 +35,13 @@ class UpdateAccountCheckAction extends FormCheck implements FormCheckInterface
                 $this->addErrorMessage('Cette adresse email est déjà utilisée');
             }
         }
+        if ($this->post->getPostValue('username') != '') {
+            if ($this->isSame($this->post->getPostValue('username'), $user->username)) {
+                $this->addErrorMessage('Le nom d\'utilisateur est identique à l\'actuel');
+            }
+            if ($this->isUnique('username', 'user') == false) {
+                $this->addErrorMessage('Ce nom d\'utilisateur est déjà utilisé');
+            }
+        }
     }
 }

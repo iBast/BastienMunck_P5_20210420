@@ -24,7 +24,7 @@
 <body>
     <header>
         <div id="logo">
-            <a href="index.html">Bastien Munck <br><span class="Ligne-2">Développeur PHP</span></a>
+            <a href="index.php">Bastien Munck <br><span class="Ligne-2">Développeur PHP</span></a>
         </div>
         <input type="checkbox" id="menu-checkbox" />
         <label class="menu-bouton" for="menu-checkbox"><svg viewBox="0 0 100 80" width="40" height="80">
@@ -35,8 +35,7 @@
         <nav class="menu">
             <ul>
                 <li><a href="blog.html">Blog</a></li>
-                <li><a href="blog.html">Inscription / connexion</a></li>
-                <li><a href="index.html#contact" class="bouton">Contactez-moi</a></li>
+                <li><a href="index.php#contact" class="bouton">Contactez-moi</a></li>
             </ul>
         </nav>
     </header>

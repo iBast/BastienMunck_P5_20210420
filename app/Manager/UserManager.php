@@ -5,6 +5,7 @@ namespace App\Manager;
 use App\App;
 use Core\Http\Request;
 use App\Action\UserMail;
+use Core\Http\ImgUpload;
 
 
 class UserManager
@@ -62,10 +63,12 @@ class UserManager
     {
         $user = $this->user->find($this->session->get('auth'));
         $message = '';
-        if ($this->request->getPostValue('pic') != '') {
-            $this->user->update($user->id, ['profilePic' => $this->request->getPostValue('pic')]);
+        if ($this->imgUpload('pic', $user->id) != "") {
+            $this->imgUpload('pic', $user->id);
+            $this->user->update($user->id, ['profilePic' => $this->imgUpload('pic', $user->id)]);
             $message .= 'La photo de profil a été mise à jour <br>';
         }
+
         if ($this->request->getPostValue('username') != '') {
             $this->user->update($user->id, ['username' => $this->request->getPostValue('username')]);
             $message .= 'Un nouveau nom d\'utilisateur a été enregistré <br>';
@@ -87,5 +90,11 @@ class UserManager
     {
         $this->user->delete($this->session->get('auth'));
         $this->session->delete('auth');
+    }
+
+    public function imgUpload($key, $id)
+    {
+        $imgUpload = new ImgUpload('avatar');
+        return $imgUpload->resizeImage($key, $id);
     }
 }
