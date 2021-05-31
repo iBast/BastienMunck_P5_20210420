@@ -18,7 +18,7 @@ try {
     if ($request->getGetValue('p') !== null) {
         $page = $request->getGetValue('p');
     } else {
-        $page = 'users.signup';
+        $page = 'infos.home';
     }
 
     $page = explode('.', $page);

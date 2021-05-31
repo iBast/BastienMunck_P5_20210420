@@ -66,4 +66,23 @@ A bientôt sur le blog !
 
         return $mailerInstance->send('Réinitialisation du mot de passe', $userEmail, $userName, $message);
     }
+
+    public function contactMail($userEmail, $userName, $message)
+    {
+        $mailerInstance = $this->getMailer();
+
+        $message =
+            'Bonjour,
+        
+Un nouveau message a été envoyé depuis la page d\'accueil du site https://bastienmunck.fr :
+
+Le message a été envoyé par ' . $userName . ', ' . $userEmail . '
+
+Voici le contenu : 
+
+' . $message . ' 
+        ';
+
+        return $mailerInstance->send('Un message a été envoyé depuis bastienmunck.fr', 'hello@bastienmunck.fr', 'Formulaire de contact', $message);
+    }
 }

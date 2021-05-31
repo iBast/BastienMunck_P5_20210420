@@ -41,7 +41,13 @@ class Form
         $accept = isset($options['accept']) ? 'accept="' . $options['accept'] . '"' : '';
         $value = isset($options['value']) ? $options['value'] : $this->getValue($name);
         $label = isset($label) ? $label . ' : <br>' : '';
-        return $this->surround($label . ' <input type="' . $type . '" name="' . $name . '" value="' . htmlspecialchars($value) . '" ' . $autocomplete . $required . $accept . '>');
+        $rows = isset($options['rows']) ? 'rows="' . $options['rows'] . '"' : '';
+        if ($type === 'textarea') {
+            $input = '<textarea name="' . $name . '"' . $rows . '>' . htmlspecialchars($value) . '</textarea>';
+        } else {
+            $input = ' <input type="' . $type . '" name="' . $name . '" value="' . htmlspecialchars($value) . '" ' . $autocomplete . $required . $accept . '>';
+        }
+        return $this->surround($label . $input);
     }
 
     public function submit($label)

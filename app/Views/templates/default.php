@@ -78,17 +78,16 @@
         <details open>
             <summary>Menu</summary>
             <ul>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="blog.html">Inscription / connexion</a></li>
-                <li><a href="#contact">Contactez-moi</a></li>
+                <li><a href="?p=blog.show">Blog</a></li>
+                <li><a href="index.php#contact">Contactez-moi</a></li>
             </ul>
         </details>
         <details open>
             <summary>Mentions légales</summary>
             <ul>
-                <li><a href="blog.html">Mentions légales</a></li>
-                <li><a href="blog.html">Politique de confidentilité</a></li>
-                <li><a href="index.html#contact">Gestion des données personneles</a></li>
+                <li><a href="?p=infos.terms">Mentions légales</a></li>
+                <li><a href="?p=infos.privacy">Politique de confidentilité</a></li>
+                <li><a href="?p=infos.show">Gestion des données personneles</a></li>
             </ul>
         </details>
         <details open>
