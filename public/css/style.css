@@ -17,6 +17,11 @@ header {
   padding-bottom: 30px;
 }
 
+a {
+  text-decoration: none;
+  color: #597080;
+}
+
 nav a {
   font-size: x-large;
   text-decoration: none;
@@ -45,22 +50,12 @@ footer a:hover {
   color: #ffbd66;
 }
 
-a {
-  text-decoration: none;
-  color: #597080;
-}
-
 .profil a {
   color: #fffcfa;
 }
 
 .profil a:hover {
   color: #ffdeb3;
-}
-
-#logo a {
-  text-decoration: none;
-  color: #597080;
 }
 
 #logo {
@@ -71,6 +66,11 @@ a {
   display: inline-block;
   margin-top: auto;
   margin-bottom: auto;
+}
+
+#logo a {
+  text-decoration: none;
+  color: #597080;
 }
 
 nav ul {
@@ -439,10 +439,30 @@ tr {
 
 td {
   padding: 12px;
+  text-align: center;
 }
 
 .blog-post textarea {
   border: 2px solid #ffbd66;
+}
+
+.tag {
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 3px;
+  font-size: 0.8em;
+}
+
+.tag-valid {
+  border-color: #4b802d;
+  background-color: #c7ffa6;
+  color: #4b802d;
+}
+
+.tag-pending {
+  border-color: #804040;
+  background-color: #fcc;
+  color: #804040;
 }
 
 .send-comment {
@@ -453,6 +473,10 @@ td {
   width: 90%;
   padding: 55px 0 55px 0;
   margin: auto;
+}
+
+img {
+  max-width: 95%;
 }
 
 form {

@@ -33,10 +33,11 @@ try {
         $action = $page[1];
     }
 
-
-    $controller = new $controller($session, $flash, $request, $dbAuth);
-    if (method_exists($controller, $action)) {
-        $controller->$action();
+    if (class_exists($controller)) {
+        $controller = new $controller($session, $flash, $request, $dbAuth);
+        if (method_exists($controller, $action)) {
+            $controller->$action();
+        }
     } else {
         $controller = new \Core\Controller\Controller;
         $controller->NotFound();

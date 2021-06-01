@@ -19,13 +19,9 @@ class UsersController extends AppController
 
     public function __construct($session, $flash, $request, $dbAuth)
     {
-        parent::__construct($this->session, $this->flash, $this->request, $this->dbAuth);
-        $this->session = $session;
-        $this->flash = $flash;
-        $this->request = $request;
-        $this->dbAuth = $dbAuth;
+        parent::__construct($session, $flash, $request, $dbAuth);
         $this->loadModel('user');
-        $this->manager = new UserManager($this->request, $this->session, $this->flash);
+        $this->manager = new UserManager($request, $session, $flash);
     }
     public function signup()
     {

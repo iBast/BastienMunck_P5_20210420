@@ -42,6 +42,7 @@ class DBAuth
         $user = $this->database->prepare('SELECT * FROM users WHERE username = ?', [$username], NULL, true);
         if ($user) {
             $this->session->set('auth', $user->id);
+            $this->session->set('role', $user->role);
             $this->flash->success("Vous êtes connecté");
             return true;
         }

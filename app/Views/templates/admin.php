@@ -13,6 +13,7 @@
     <meta property="og:image" content="https://bastienmunck.fr/img/logo.png">
     <meta property="og:site_name" content="Bastien Munck - Développeur PHP">
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
@@ -34,8 +35,9 @@
             </svg></label>
         <nav class="menu">
             <ul>
-                <li><a href="?p=blog.show">Blog</a></li>
-                <li><a href="index.php#contact" class="bouton">Contactez-moi</a></li>
+                <li><a href="?p=admin.blog.index">Gestion du blog</a></li>
+                <li><a href="?p=admin.users.index">Gestion des utilisateurs</a></li>
+                <li><a href="index.php" class="bouton">Retour au site</a></li>
             </ul>
         </nav>
     </header>
