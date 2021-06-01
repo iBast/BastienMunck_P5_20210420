@@ -7,23 +7,23 @@
         </tr>
         <tr>
             <td>Nouvelle photo de profil</td>
-            <td> <?= htmlspecialchars($form->input('pic', null, ['type' => 'file', 'accept' => 'image/jpeg, image/jpg'])); ?></td>
+            <td> <?= $form->input('pic', null, ['type' => 'file', 'accept' => 'image/jpeg, image/jpg']); ?></td>
         </tr>
         <tr>
             <td>Nom d'utilisateur</td>
-            <td><?= $user->username; ?></td>
+            <td><?= htmlspecialchars($user->username); ?></td>
         </tr>
         <tr>
             <td>Nouveau nom d'utilisateur</td>
-            <td><?= htmlspecialchars($form->input('username', null)); ?></td>
+            <td><?= $form->input('username', null); ?></td>
         </tr>
         <tr>
             <td>Email</td>
-            <td><?= $user->email; ?></td>
+            <td><?= htmlspecialchars($user->email); ?></td>
         </tr>
         <tr>
             <td>Nouvelle adresse Email</td>
-            <td><?= htmlspecialchars($form->input('email', null, ['type' => 'email'])); ?></td>
+            <td><?= $form->input('email', null, ['type' => 'email']); ?></td>
         </tr>
     </table>
     <br>
@@ -31,6 +31,6 @@
         <a href="?p=users.deleteAccount">
             <div class="btn btn-outline-danger">Supprimer le compte</div>
         </a>
-        <?= htmlspecialchars($form->submit('Enregistrer les modifications')); ?>
+        <?= $form->submit('Enregistrer les modifications'); ?>
     </div>
 </form>

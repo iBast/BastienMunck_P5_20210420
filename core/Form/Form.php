@@ -43,7 +43,7 @@ class Form
         $label = isset($label) ? $label . ' : <br>' : '';
         $rows = isset($options['rows']) ? 'rows="' . $options['rows'] . '"' : '';
         if ($type === 'textarea') {
-            $input = '<textarea name="' . $name . '"' . $rows . '>' . htmlspecialchars($value) . '</textarea>';
+            $input = '<textarea name="' . $name . '" ' . $rows . '>' . htmlspecialchars($value) . '</textarea>';
         } else {
             $input = ' <input type="' . $type . '" name="' . $name . '" value="' . htmlspecialchars($value) . '" ' . $autocomplete . $required . $accept . '>';
         }

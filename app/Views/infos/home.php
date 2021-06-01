@@ -23,23 +23,23 @@
         <div class="form">
 
             <div class="form-nom">
-                <?= htmlspecialchars($form->input('name', 'Votre nom')); ?>
+                <?= $form->input('name', 'Votre nom'); ?>
             </div>
 
 
             <div class="form-mail">
-                <?= htmlspecialchars($form->input('email', 'Votre adresse email', ['type' => 'email'])); ?>
+                <?= $form->input('email', 'Votre adresse email', ['type' => 'email']); ?>
             </div>
 
 
             <div class="form-text">
-                <?= htmlspecialchars($form->input('message', 'Votre message', ['type' => 'textarea', 'rows' => 10])); ?>
+                <?= $form->input('message', 'Votre message', ['type' => 'textarea', 'rows' => 10]); ?>
             </div>
         </div>
 
         <div class="envoi">
             <div class="main-btn">
-                <?= htmlspecialchars($form->submit("Envoyer le message")); ?>
+                <?= $form->submit("Envoyer le message"); ?>
             </div>
             <div class="coordonnees">
                 <div class="avatar-class">

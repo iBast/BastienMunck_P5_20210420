@@ -9,11 +9,11 @@
     </div>
     <form action="#" method="post">
 
-        <?= htmlspecialchars($form->input('password', 'Mot de passe', ['type' => 'password'])); ?>
+        <?= $form->input('password', 'Mot de passe', ['type' => 'password']); ?>
 
         <div class="form">
 
-            <?= htmlspecialchars($form->submit('Supprimer définitivement le compte')); ?>
+            <?= $form->submit('Supprimer définitivement le compte'); ?>
 
         </div>
     </form>
