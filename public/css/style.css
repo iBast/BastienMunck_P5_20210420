@@ -171,7 +171,6 @@ h1 {
   margin-left: 25px;
   margin-right: 25px;
   font-size: xx-large;
-
 }
 
 .hero-banner {
@@ -211,7 +210,7 @@ h1 {
 }
 
 .btn-outline-danger {
-  border: solid 2px #FCC;
+  border: solid 2px #fcc;
   color: #804040;
 }
 
@@ -228,7 +227,7 @@ h1 {
 .btn-outline-danger:hover {
   border: solid 2px #804040;
   background-color: #804040;
-  color: #FCC;
+  color: #fcc;
 }
 
 .Ligne-2 {
@@ -436,14 +435,11 @@ table {
 
 tr {
   border-bottom: 2px solid #ffbd66;
-  
 }
 
 td {
   padding: 12px;
 }
-
-
 
 .blog-post textarea {
   border: 2px solid #ffbd66;
@@ -473,7 +469,7 @@ form {
   border: 1px solid;
   border-radius: 8px;
   text-align: center;
-  margin:  25px auto 25px auto;
+  margin: 25px auto 25px auto;
 }
 
 .alert-danger {

@@ -92,9 +92,9 @@ class UserManager
         $this->session->delete('auth');
     }
 
-    public function imgUpload($key, $id)
+    public function imgUpload($key, $userId)
     {
         $imgUpload = new ImgUpload('avatar');
-        return $imgUpload->resizeImage($key, $id);
+        return $imgUpload->resizeImage($key, $userId);
     }
 }

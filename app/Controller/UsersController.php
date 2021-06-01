@@ -174,7 +174,6 @@ class UsersController extends AppController
     public function deleteAccount()
     {
         App::getInstance()->setTitle("Suppression du compte");
-        $user = $this->user->find($this->session->get('auth'));
 
         if ($this->request->hasPost()) {
             $deleteAccountCheckAction = new DeleteAccountCheckAction($this->request, $this->session);

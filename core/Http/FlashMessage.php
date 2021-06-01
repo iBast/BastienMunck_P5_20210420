@@ -43,7 +43,7 @@ class FlashMessage
 
     public function get(string $type)
     {
-        if (is_null($this->messages)) {
+        if ($this->messages === null) {
             $this->messages = $this->session->get($this->sessionKey, []);
             $this->session->delete($this->sessionKey);
         }

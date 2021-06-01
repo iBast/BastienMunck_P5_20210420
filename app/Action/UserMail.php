@@ -12,7 +12,7 @@ class UserMail
 
     private function getMailer()
     {
-        $config = Config::getInstance('././config/config.php');
+        $config = Config::getInstance(ROOT . '/config/config.php');
         if ($this->mailerInstance === null) {
             $this->mailerInstance = new Mail(
                 $config->get('smtp_username'),

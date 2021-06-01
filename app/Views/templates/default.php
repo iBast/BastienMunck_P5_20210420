@@ -18,7 +18,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
     <link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
     <link rel="manifest" href="/site.webmanifest">
-    <title><?= App\App::getInstance()->title; ?></title>
+    <title><?= htmlspecialchars(App\App::getInstance()->title); ?></title>
 </head>
 
 <body>

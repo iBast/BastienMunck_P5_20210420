@@ -43,7 +43,7 @@ class ImgUpload
                     $largeur_miniature = $this->redim_width;
                     $hauteur_miniature = $hauteur / $largeur * $this->redim_width;
 
-                    $im = \imagecreatefromjpeg($_FILES[$key][self::DIR_TEMPORARY]);
+                    $img = \imagecreatefromjpeg($_FILES[$key][self::DIR_TEMPORARY]);
                     $im_miniature = \imagecreatetruecolor(
                         $largeur_miniature,
                         $hauteur_miniature
@@ -52,7 +52,7 @@ class ImgUpload
 
                     $retour = $name . '.' . $extension;
 
-                    if (!\imagecopyresampled($im_miniature, $im, 0, 0, 0, 0, $largeur_miniature, $hauteur_miniature, $largeur, $hauteur)) {
+                    if (!\imagecopyresampled($im_miniature, $img, 0, 0, 0, 0, $largeur_miniature, $hauteur_miniature, $largeur, $hauteur)) {
                         $retour = 'erreur creation miniature'  . ' (imagecopyresampled ' . $destination . ')';
                     } elseif (!\imagejpeg($im_miniature, $destination, 90)) {
                         $retour = 'erreur image' . ' (imagejpeg '  . $destination . ')';
