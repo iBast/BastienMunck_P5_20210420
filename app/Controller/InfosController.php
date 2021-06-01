@@ -36,7 +36,7 @@ class InfosController extends AppController
                 $this->flash->success('Votre message a bien été envoyé');
             }
         }
-        $form = new \Core\Form\Form($this->request->getPost());
+        $form = new \Core\Form\Form();
         $this->render('infos.home', compact('form'));
     }
 }

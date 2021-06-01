@@ -1,12 +1,13 @@
 <?php
 
+use Core\Http\Session;
 use Core\Auth\DBAuth;
 use Core\Http\Request;
-use Core\Http\Session;
 use Core\Http\FlashMessage;
 
 try {
-    require_once '../vendor/autoload.php';
+    define('ROOT', dirname(__DIR__));
+    require_once ROOT . '/vendor/autoload.php';
     $session = new Session;
     $flash = new FlashMessage($session);
     $request = new Request($_GET, $_POST);

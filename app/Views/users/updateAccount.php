@@ -3,11 +3,11 @@
     <table class="profiletable">
         <tr>
             <td>Photo de profil</td>
-            <td> <img src="../public/img/avatar/<?= $user->profilePic; ?>" alt="Photo de profil" height="100px"></td>
+            <td> <img src="../public/img/avatar/<?= htmlspecialchars($user->profilePic); ?>" alt="Photo de profil" height="100px"></td>
         </tr>
         <tr>
             <td>Nouvelle photo de profil</td>
-            <td> <?= $form->input('pic', null, ['type' => 'file', 'accept' => 'image/jpeg, image/jpg']); ?></td>
+            <td> <?= htmlspecialchars($form->input('pic', null, ['type' => 'file', 'accept' => 'image/jpeg, image/jpg'])); ?></td>
         </tr>
         <tr>
             <td>Nom d'utilisateur</td>
@@ -15,7 +15,7 @@
         </tr>
         <tr>
             <td>Nouveau nom d'utilisateur</td>
-            <td><?= $form->input('username', null); ?></td>
+            <td><?= htmlspecialchars($form->input('username', null)); ?></td>
         </tr>
         <tr>
             <td>Email</td>
@@ -23,7 +23,7 @@
         </tr>
         <tr>
             <td>Nouvelle adresse Email</td>
-            <td><?= $form->input('email', null, ['type' => 'email']); ?></td>
+            <td><?= htmlspecialchars($form->input('email', null, ['type' => 'email'])); ?></td>
         </tr>
     </table>
     <br>
@@ -31,6 +31,6 @@
         <a href="?p=users.deleteAccount">
             <div class="btn btn-outline-danger">Supprimer le compte</div>
         </a>
-        <?= $form->submit('Enregistrer les modifications') ?>
+        <?= htmlspecialchars($form->submit('Enregistrer les modifications')); ?>
     </div>
 </form>

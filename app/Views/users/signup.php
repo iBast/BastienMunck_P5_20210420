@@ -1,15 +1,15 @@
 <section class='account-creation'>
     <h1>Créer un compte</h1>
     <form action="#" method="post">
-        <?= $form->input('username', 'Nom d\'utilisateur'); ?>
+        <?= htmlspecialchars($form->input('username', 'Nom d\'utilisateur')); ?>
         <br>
-        <?= $form->input('email', 'Email', ['type' => 'email']); ?>
+        <?= htmlspecialchars($form->input('email', 'Email', ['type' => 'email'])); ?>
         <br>
-        <?= $form->input('password', 'Mot de passe', ['type' => 'password']); ?>
+        <?= htmlspecialchars($form->input('password', 'Mot de passe', ['type' => 'password'])); ?>
         <br>
-        <?= $form->input('confirm_password', 'Confirmer le mot de passe', ['type' => 'password']); ?>
+        <?= htmlspecialchars($form->input('confirm_password', 'Confirmer le mot de passe', ['type' => 'password'])); ?>
         <br>
-        <div class="main-btn"> <?= $form->submit(" S’inscrire "); ?> </div>
+        <div class="main-btn"> <?= htmlspecialchars($form->submit(" S’inscrire ")); ?> </div>
 
 
     </form>

@@ -16,7 +16,7 @@ class AppController extends Controller
 
     public function __construct($session, $flash, $request, $dbAuth)
     {
-        $this->viewPath = '../app/Views/';
+        $this->viewPath = '../App/Views/';
         $this->request = $request;
         $this->session = $session;
         $this->flash = $flash;

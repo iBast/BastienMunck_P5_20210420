@@ -3,15 +3,15 @@
 <table class="profiletable">
     <tr>
         <td>Photo de profil</td>
-        <td> <img src="../public/img/avatar/<?= $user->profilePic; ?>" alt="Photo de profil" height="100px"></td>
+        <td> <img src="../public/img/avatar/<?= htmlspecialchars($user->profilePic); ?>" alt="Photo de profil" height="100px"></td>
     </tr>
     <tr>
         <td>Nom d'utilisateur</td>
-        <td><?= $user->username; ?></td>
+        <td><?= htmlspecialchars($user->username); ?></td>
     </tr>
     <tr>
         <td>Email</td>
-        <td><?= $user->email; ?></td>
+        <td><?= htmlspecialchars($user->email); ?></td>
     </tr>
 </table>
 <div class="form">
