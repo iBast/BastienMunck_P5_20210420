@@ -3,6 +3,8 @@
 namespace Core\Auth;
 
 use Core\Database\Database;
+use Core\Http\Session;
+use Core\Http\FlashMessage;
 
 /**
  * Class DBAuth
@@ -11,15 +13,19 @@ use Core\Database\Database;
  */
 class DBAuth
 {
-    public function __construct(Database $database)
+    private $flash;
+
+    public function __construct(Database $database, Session $session)
     {
         $this->database = $database;
+        $this->session = $session;
+        $this->flash = new FlashMessage($this->session);
     }
 
     public function getUserId()
     {
         if ($this->logged()) {
-            return $_SESSION['auth'];
+            return $this->session->get('auth');
         }
 
         return false;
@@ -30,22 +36,28 @@ class DBAuth
      * @param $password
      * @return boolean
      */
-    public function login($username, $password)
+    public function login($username)
     {
 
-        $user = $this->db->prepare('SELECT * FROM users WHERE username = ?', [$username], NULL, true);
+        $user = $this->database->prepare('SELECT * FROM users WHERE username = ?', [$username], NULL, true);
         if ($user) {
-            if ($user->password === sha1($password)) {
-                $_SESSION['auth'] = $user->id;
-                return true;
-            }
+            $this->session->set('auth', $user->id);
+            $this->flash->success("Vous êtes connecté");
+            return true;
         }
-
-        return false;
     }
 
     public function logged()
     {
-        return isset($_SESSION['auth']);
+        return $this->session->get('auth') != null;
+    }
+
+    public function logout()
+    {
+        if ($this->session->get('auth') != null) {
+            $this->flash->success('Vous avez été déconnecté');
+            return $this->session->delete('auth');
+        }
+        $this->flash->danger('Vous devez être connecté pour pouvoir vous déconnecter :)');
     }
 }

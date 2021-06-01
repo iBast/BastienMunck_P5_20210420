@@ -27,7 +27,7 @@ class App
     /**
      * Method getTable
      * 
-     * Pass the table name to core/Table.php
+     * Pass the table name extends from core/Table.php
      */
     public function getTable($name)
     {
@@ -42,13 +42,18 @@ class App
      */
     public function getDb()
     {
-        $config = Config::getInstance('../config/config.php');
+        $config = Config::getInstance(ROOT . '/config/config.php');
         if ($this->db_instance === null) {
             $this->db_instance = new MysqlDatabase($config->get('db_name'), $config->get('db_user'), $config->get('db_pass'), $config->get('db_host'));
         }
         return $this->db_instance;
     }
 
+
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
     /**
      * Method run
      * 

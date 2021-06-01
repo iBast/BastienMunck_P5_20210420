@@ -7,12 +7,12 @@ class Request
     private $_get;
     private $_post;
 
-    const TYPE_STRING = '0';
-    const TYPE_MAIL = '1';
-    const TYPE_INT = '2';
-    const TYPE_BOOLEAN = '3';
-    const TYPE_ARRAY = '4';
-    const TYPE_HTMLENTITY = '5';
+    public const TYPE_STRING = '0';
+    public const TYPE_MAIL = '1';
+    public const TYPE_INT = '2';
+    public const TYPE_BOOLEAN = '3';
+    public const TYPE_ARRAY = '4';
+    public const TYPE_HTMLENTITY = '5';
 
     public function __construct($get = null, $post = null)
     {
@@ -49,28 +49,6 @@ class Request
         unset($this->_post[$key]);
     }
 
-    public function getSessionValue($key, $type = self::TYPE_STRING)
-    {
-        return isset($_SESSION[$key]) ? $this->securise($_SESSION[$key], $type) : null;
-    }
-    public function hasSession(): bool
-    {
-        return isset($_SESSION);
-    }
-    public function hasSessionValue($key): bool
-    {
-        return isset($_SESSION[$key]);
-    }
-    public function unsetSessionValue($key)
-    {
-        unset($_SESSION[$key]);
-    }
-    public function setSessionValue($key, $value)
-    {
-        $_SESSION[$key] = $value;
-    }
-
-
     private function securise($data, $type = self::TYPE_STRING)
     {
         $retour = null;
@@ -86,7 +64,8 @@ class Request
                 $retour = filter_var($data, FILTER_VALIDATE_INT);
                 break;
             case self::TYPE_MAIL:
-                $retour = filter_var($data, FILTER_VALIDATE_EMAIL);
+                $retour = filter_var($data, FILTER_SANITIZE_EMAIL);
+                $retour = filter_var($retour, FILTER_VALIDATE_EMAIL);
                 break;
             case self::TYPE_BOOLEAN:
                 $retour = filter_var($data, FILTER_VALIDATE_BOOLEAN);
