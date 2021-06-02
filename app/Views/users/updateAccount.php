@@ -7,7 +7,7 @@
         </tr>
         <tr>
             <td>Nouvelle photo de profil</td>
-            <td> <?= $form->input('pic', null, ['type' => 'file', 'accept' => 'image/jpeg, image/jpg']); ?></td>
+            <td> <?= $form->input('profilePic', null, ['type' => 'file', 'accept' => 'image/jpeg, image/jpg']); ?></td>
         </tr>
         <tr>
             <td>Nom d'utilisateur</td>

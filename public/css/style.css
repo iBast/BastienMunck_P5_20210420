@@ -14,7 +14,6 @@ header {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding-bottom: 30px;
 }
 
 a {
@@ -195,6 +194,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .btn-main {
@@ -212,6 +212,7 @@ h1 {
 .btn-outline-danger {
   border: solid 2px #fcc;
   color: #804040;
+  background-color: #fffcfa;
 }
 
 .btn-main:hover {
@@ -383,6 +384,7 @@ details summary {
 
 .article {
   border: 2px solid #ffbd66;
+  min-width: 90%;
   border-radius: 5px;
   padding: 10px;
   margin: 10px;
@@ -595,6 +597,7 @@ form {
 
   .article {
     max-width: 29%;
+    min-width: 28%;
   }
 }
 

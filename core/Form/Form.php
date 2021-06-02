@@ -50,6 +50,21 @@ class Form
         return $this->surround($label . $input);
     }
 
+    public function select($name, ?string $label, $options)
+    {
+        $label = '<label>' . $label . '</label>';
+        $input = '<select  name=' . $name . '>';
+        foreach ($options as $key => $value) {
+            $attributes = '';
+            if ($key == $this->getValue($name)) {
+                $attributes = 'selected';
+            }
+            $input .= "<option value='$key' $attributes>$value</option>";
+        }
+        $input .= '</select>';
+        return $this->surround($label . $input);
+    }
+
     public function submit($label)
     {
         $this->newToken();

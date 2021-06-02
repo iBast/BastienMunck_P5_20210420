@@ -35,11 +35,11 @@ try {
 
     if (class_exists($controller)) {
         $controller = new $controller($session, $flash, $request, $dbAuth);
-        if (method_exists($controller, $action)) {
-            $controller->$action();
-        }
+    }
+    if (method_exists($controller, $action)) {
+        $controller->$action();
     } else {
-        $controller = new \Core\Controller\Controller;
+        $controller = new \App\Controller\InfosController($session, $flash, $request, $dbAuth);
         $controller->NotFound();
     }
 } catch (Exception $e) {

@@ -40,12 +40,13 @@ class DBAuth
     {
 
         $user = $this->database->prepare('SELECT * FROM users WHERE username = ?', [$username], NULL, true);
-        if ($user) {
+        if ($user->passwordLock == 0) {
             $this->session->set('auth', $user->id);
             $this->session->set('role', $user->role);
             $this->flash->success("Vous êtes connecté");
             return true;
         }
+        $this->flash->danger('Votre mot de passe doit être modifé');
     }
 
     public function logged()

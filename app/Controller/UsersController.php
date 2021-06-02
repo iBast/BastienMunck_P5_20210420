@@ -50,7 +50,10 @@ class UsersController extends AppController
             $this->flash->danger($errorMessage);
             if ($errorMessage == null) {
                 $this->dbAuth->login($this->request->getPostValue('username'), $this->request->getPostValue('password'));
-                return $this->redirect('?p=users.account');
+                if ($this->session->get('auth') != null) {
+                    return $this->redirect('?p=users.account');
+                }
+                return $this->redirect('?p=users.changePassword');
             }
         }
 
@@ -67,7 +70,8 @@ class UsersController extends AppController
         if ($user->token === $this->request->getGetValue('t')) {
             $this->user->update($user->id, [
                 'verifiedAt' => date("Y-m-d H:i:s"),
-                'token' => null
+                'token' => null,
+                'role' => 1
             ]);
             if ($this->session->get('auth') == null) {
                 $this->flash->success("Le compte a bien été validé. Veuillez vous connecter");
@@ -142,7 +146,7 @@ class UsersController extends AppController
             if ($errorMessage == null) {
                 $this->manager->passwordUpdate($this->request->getPostValue('email'), Request::TYPE_MAIL);
                 $this->flash->success('Votre mot de passe a été modifié');
-                $this->redirect('?p=users.account');
+                $this->redirect('?p=users.login');
             }
         }
         $form = new \Core\Form\Form($this->request->getPost());

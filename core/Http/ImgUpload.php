@@ -27,8 +27,6 @@ class ImgUpload
                 $retour = 'erreur upload';
             } elseif (isset($_FILES[$key][self::DIR_TEMPORARY]) && $_FILES[$key]['type'] == 'image/jpeg') {
                 try {
-
-
                     $destination = '../public/img/' .  $this->directory . '/' . $name . '.jpg';
                     $temp = explode(".", $destination);
                     $extension = end($temp);
