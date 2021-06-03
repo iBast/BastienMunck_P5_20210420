@@ -63,9 +63,9 @@ class UserManager
     {
         $user = $this->user->find($this->session->get('auth'));
         $message = '';
-        if ($this->imgUpload('pic', $user->id) != "") {
-            $this->imgUpload('pic', $user->id);
-            $this->user->update($user->id, ['profilePic' => $this->imgUpload('pic', $user->id)]);
+        if ($this->imgUpload('profilePic', $user->id) != "") {
+            $this->imgUpload('profilePic', $user->id);
+            $this->user->update($user->id, ['profilePic' => $this->imgUpload('profilePic', $user->id)]);
             $message .= 'La photo de profil a été mise à jour <br>';
         }
 

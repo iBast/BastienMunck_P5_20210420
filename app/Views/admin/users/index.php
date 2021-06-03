@@ -18,7 +18,7 @@
                     <?php } ?>
                 </td>
                 <td><?= USER_ROLE[$user->role]; ?></td>
-                <td><a href="?p=admin.users.edit&id=<?= $user->id; ?>"><span class="material-icons">
+                <td><a href="?p=admin.users.edit&id=<?= htmlspecialchars($user->id); ?>"><span class="material-icons">
                             edit
                         </span></a></td>
             </tr>
