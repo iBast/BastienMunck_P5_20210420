@@ -15,7 +15,7 @@
                 <p>X ont validés leurs adresses email</p>
             </article>
         </a>
-        <a href="?p=admin.blog.index" class="article">
+        <a href="?p=admin.posts.index" class="article">
             <article>
                 <h2>Articles</h2>
                 <p>Il y a XX articles en ligne</p>
