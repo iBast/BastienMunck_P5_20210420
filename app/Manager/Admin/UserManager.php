@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Manager;
+namespace App\Manager\Admin;
 
 use App\App;
 use Core\Http\Request;
@@ -23,21 +23,6 @@ class UserManager
         $this->user = App::getInstance()->getTable('user');
     }
 
-    public function create()
-    {
-        $user = [
-            'username' => $this->request->getPostValue('username'),
-            'email' => $this->request->getPostValue('email', Request::TYPE_MAIL),
-            'password' => password_hash($this->request->getPostValue('password'), PASSWORD_DEFAULT),
-            'token' => $this->session->get($this->request->getPostValue('tokenName'))
-        ];
-        $result = $this->user->create($user);
-        if ($result) {
-            $mail = new UserMail;
-            $mail->signupMail($user['email'], $user['username'], $user['token']);
-        }
-        return $result;
-    }
 
     public function recover($email)
     {
@@ -50,18 +35,10 @@ class UserManager
         $mail->recoverMail($user->email, $user->username, $this->request->getPostValue('token'));
     }
 
-    public function passwordUpdate($email)
-    {
-        $user = $this->user->find($email, 'email');
-        $this->user->update($user->id, [
-            'password' => password_hash($this->request->getPostValue('password'), PASSWORD_DEFAULT),
-            'passwordLock' => '0'
-        ]);
-    }
 
     public function updateAccount()
     {
-        $user = $this->user->find($this->session->get('auth'));
+        $user = $this->user->find($this->request->getGetValue('id'));
         $message = '';
         if ($this->imgUpload('profilePic', $user->id) != "") {
             $this->imgUpload('profilePic', $user->id);
@@ -69,11 +46,15 @@ class UserManager
             $message .= 'La photo de profil a été mise à jour <br>';
         }
 
-        if ($this->request->getPostValue('username') != '') {
+        if ($this->request->getPostValue('username') != $user->username) {
             $this->user->update($user->id, ['username' => $this->request->getPostValue('username')]);
             $message .= 'Un nouveau nom d\'utilisateur a été enregistré <br>';
         }
-        if ($this->request->getPostValue('email') != '') {
+        if ($this->request->getPostValue('role') != $user->role) {
+            $this->user->update($user->id, ['role' => $this->request->getPostValue('role')]);
+            $message .= 'Le rôle de l\'utilisateur ' . $user->username . ' a bien été enregistré <br>';
+        }
+        if ($this->request->getPostValue('email') != $user->email) {
             $this->user->update($user->id, [
                 'email' => $this->request->getPostValue('email'),
                 'token' => $this->request->getPostValue('token'),
@@ -88,8 +69,8 @@ class UserManager
 
     public function deleteAccount()
     {
-        $this->user->delete($this->session->get('auth'));
-        $this->session->delete('auth');
+        $this->user->delete($this->request->getPostValue('userid'));
+        $this->flash->success('L\'utilisateur a été supprimé');
     }
 
     public function imgUpload($key, $userId)

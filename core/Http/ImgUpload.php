@@ -6,8 +6,8 @@ class ImgUpload
 {
     private $directory;
     public $redim = true;
-    public $redim_height = 600;
-    public $redim_width = 1000;
+    public $redim_height = 400;
+    public $redim_width = 400;
 
     const DIR_TEMPORARY = 'tmp_name';
 
@@ -27,8 +27,6 @@ class ImgUpload
                 $retour = 'erreur upload';
             } elseif (isset($_FILES[$key][self::DIR_TEMPORARY]) && $_FILES[$key]['type'] == 'image/jpeg') {
                 try {
-
-
                     $destination = '../public/img/' .  $this->directory . '/' . $name . '.jpg';
                     $temp = explode(".", $destination);
                     $extension = end($temp);

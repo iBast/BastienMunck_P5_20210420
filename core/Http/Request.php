@@ -51,14 +51,12 @@ class Request
 
     private function securise($data, $type = self::TYPE_STRING)
     {
-        $retour = null;
-        $erreur = false;
         switch ($type) {
             case self::TYPE_STRING:
                 $retour = (string)filter_var($data);
                 break;
             case self::TYPE_ARRAY:
-                $retour = is_array($data) ? $data : $erreur;
+                $retour = is_array($data) ? $data : false;
                 break;
             case self::TYPE_INT:
                 $retour = filter_var($data, FILTER_VALIDATE_INT);
