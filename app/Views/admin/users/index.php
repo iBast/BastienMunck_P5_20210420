@@ -10,7 +10,7 @@
         </tr>
         <?php foreach ($users as $user) : ?>
             <tr>
-                <td><?= $user->username; ?></td>
+                <td><?= htmlspecialchars($user->username); ?></td>
                 <td><?php if ($user->verifiedAt != null) { ?>
                         <span class="tag tag-valid">Validé</span>
                     <?php } else { ?>

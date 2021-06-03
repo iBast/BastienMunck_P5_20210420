@@ -11,14 +11,21 @@
             <th>Dernière modification</th>
             <th>Actions</th>
         </tr>
-
-        <tr>
-            <td>Titre</td>
-            <td>Categorie</td>
-            <td>Auteur</td>
-            <td>Statut</td>
-            <td>Dernière modification</td>
-            <td>Actions</td>
-        </tr>
+        <?php foreach ($posts as $post) : ?>
+            <tr>
+                <td><?= htmlspecialchars($post->title); ?></td>
+                <td><?= htmlspecialchars($post->category); ?></td>
+                <td><?= htmlspecialchars($post->author); ?></td>
+                <td><?= POST_STATUS[(htmlspecialchars($post->published))]; ?></td>
+                <td><?= htmlspecialchars($post->lastUpdate); ?></td>
+                <td><a href="?p=admin.posts.edit&id=<?= $post->id; ?>"><span class="material-icons">
+                            edit
+                        </span></a>
+                    <a href="?p=admin.users.edit&id="><button class="material-icons">
+                            edit
+                        </button></a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
     </table>
 </section>
