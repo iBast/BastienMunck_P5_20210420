@@ -608,6 +608,14 @@ form {
 }
 
 
+button {
+  color : #804040;
+  border: none;
+  background-color: #fffcfa;
+  cursor: pointer;
+}
+
+
 @media screen and (min-width: 1050px) {
 
    body {

@@ -1,7 +1,7 @@
-<h1>Gestion des articles</h1>
+<h1>Gestion des catégories</h1>
 
 <section class="account-creation">
-    <a href="?p=admin.posts.add" class="btn btn-outline">Ajouter un article</a>
+    <a href="?p=admin.categories.add" class="btn btn-outline">Ajouter une catégorie</a>
     <table>
         <tr>
             <th>Titre</th>
@@ -21,12 +21,9 @@
                 <td><a href="?p=admin.posts.edit&id=<?= $post->id; ?>"><span class="material-icons">
                             edit
                         </span></a>
-                    <form action='?p=admin.posts.delete' method="post" style="display: inline;">
-                        <button class="material-icons danger">
+                    <a href="?p=admin.users.delete&id="><button class="material-icons">
                             clear
-                        </button>
-                        <?= $form->input('id', null, ['type' => 'hidden', 'value' => $post->id]); ?>
-                    </form>
+                        </button></a>
                 </td>
             </tr>
         <?php endforeach; ?>

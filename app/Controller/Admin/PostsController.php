@@ -26,7 +26,8 @@ class PostsController extends AdminController
         $posts = $this->post->last();
         $categories = App::getInstance()->getTable('Category')->all();
         $users = App::getInstance()->getTable('user')->all();
-        $this->render('admin.posts.index', compact('posts', 'categories', 'users'));
+        $form = new Form();
+        $this->render('admin.posts.index', compact('posts', 'categories', 'users', 'form'));
     }
 
     public function add()
@@ -68,5 +69,14 @@ class PostsController extends AdminController
         $categories = $this->category->extract('id', 'title');
         $form = new Form($post);
         $this->render('admin.posts.edit', compact('form', 'post', 'checked', 'categories'));
+    }
+
+    public function delete()
+    {
+        if ($this->request->hasPost()) {
+            $this->post->delete($this->request->getPostvalue('id'));
+            $this->flash->success("L'article a été supprimé");
+            return $this->redirect('?p=admin.posts.index');
+        }
     }
 }

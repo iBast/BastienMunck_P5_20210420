@@ -35,7 +35,7 @@ class PostManager
         return $this->post->create($post);
     }
 
-    public function update($id)
+    public function update($post_id)
     {
         $post = [
             'title' => $this->request->getPostValue('title'),
@@ -46,6 +46,6 @@ class PostManager
             'lastUpdate' => date("Y-m-d H:i:s"),
 
         ];
-        return $this->post->update($id, $post);
+        return $this->post->update($post_id, $post);
     }
 }
