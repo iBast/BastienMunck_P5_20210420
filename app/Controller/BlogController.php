@@ -52,7 +52,7 @@ class BlogController extends AppController
         $heure = date("H:i", $time);
         $session = $this->session;
 
-        $comments = $this->comment->list($this->request->getGetValue('id'));
+        $comments = $this->comment->listValidated($this->request->getGetValue('id'));
         $form = new Form();
         $this->render('blog.show', compact('post', 'date', 'heure', 'comments', 'session', 'form'));
     }

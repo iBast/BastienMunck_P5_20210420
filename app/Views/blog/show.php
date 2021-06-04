@@ -21,7 +21,7 @@
             <div class="comment">
                 <div><img src="../public/img/avatar/<?= $comment->authorpic; ?>" class="avatar-comment" alt="Photo de profil"></div>
                 <div>
-                    <p>De : <b><?= $comment->author; ?></b> Posté le : <em><?= $comment->date; ?></em></p>
+                    <p>De : <b><?= $comment->author; ?></b> Posté le : <em><?= date('d/m/y', strtotime($comment->date)); ?></em></p>
                     <p><?= $comment->content; ?></p>
                 </div>
 
