@@ -65,14 +65,15 @@ class Form
         return $this->surround($label . $input);
     }
 
-    public function toggle($name, ?string $checked)
+    public function toggle($name, $label, ?string $checked)
     {
         $checked = isset($checked) ? $checked : '';
-        $input = '<label class="switch">   
+        $input = '<div class="toggle"><div class="grid-left">' . $label . '</div>
+            <div class="grid-right-monorow"><label class="switch">   
             <input type="hidden" name="' . $name . '" value="0"> 
             <input type="checkbox" name="' . $name . '" value="1" ' . $checked . '>
             <span class="slider round"></span>
-            </label>';
+            </label></div></div>';
         return $this->surround($input);
     }
 

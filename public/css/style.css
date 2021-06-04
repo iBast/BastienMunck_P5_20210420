@@ -351,6 +351,14 @@ select {
   font-size: 1.3em;
 }
 
+.toggle {
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 72% 6% 22%;
+  grid-template-rows: 100;
+}  
+
 /* The switch - the box around the slider */
 .switch {
   position: relative;
@@ -392,11 +400,11 @@ select {
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #ffbd66;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #ffbd66;
 }
 
 input:checked + .slider:before {
@@ -562,6 +570,10 @@ td {
   grid-row-start: 2;
 }
 
+.grid-right-monorow {
+  grid-row-start: 1;
+}
+
 img {
   max-width: 95%;
 }
@@ -609,7 +621,7 @@ form {
 
 
 button {
-  color : #804040;
+  color: #804040;
   border: none;
   background-color: #fffcfa;
   cursor: pointer;
@@ -699,6 +711,14 @@ button {
     margin: auto;
     display: grid;
     grid-template-columns: 72% 6% 22%;
+  }  
+
+  .toggle {
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 72% 6% 22%;
+    grid-template-rows: 100;
   }  
 
   .grid-left {

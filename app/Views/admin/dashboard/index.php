@@ -21,7 +21,7 @@
                 <p>Il y a XX articles en ligne</p>
             </article>
         </a>
-        <a href="?p=admin.category.index" class="article">
+        <a href="?p=admin.categories.index" class="article">
             <article>
                 <h2>Catégories</h2>
                 <p>Il y a XX articles en ligne</p>

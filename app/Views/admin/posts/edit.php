@@ -13,8 +13,7 @@
             <br>
             <?= $form->select('category', 'Catégorie', $categories); ?>
             <br>
-            <p>En ligne : </p> <br>
-            <?= $form->toggle('published', $checked); ?>
+            <?= $form->toggle('published', 'En ligne :', $checked); ?>
             <br><br><br>
             <p class="center"><?= $form->submit('Enregistrer'); ?></p>
         </div>
