@@ -52,7 +52,7 @@ class Form
 
     public function select($name, ?string $label, $options)
     {
-        $label = '<label>' . $label . '</label>';
+        $label = isset($label) ?  '<label>' . $label . ' : </label> <br>' : '';
         $input = '<select  name=' . $name . '>';
         foreach ($options as $key => $value) {
             $attributes = '';
@@ -63,6 +63,18 @@ class Form
         }
         $input .= '</select>';
         return $this->surround($label . $input);
+    }
+
+    public function toggle($name, $label, ?string $checked)
+    {
+        $checked = isset($checked) ? $checked : '';
+        $input = '<div class="toggle"><div class="grid-left">' . $label . '</div>
+            <div class="grid-right-monorow"><label class="switch">   
+            <input type="hidden" name="' . $name . '" value="0"> 
+            <input type="checkbox" name="' . $name . '" value="1" ' . $checked . '>
+            <span class="slider round"></span>
+            </label></div></div>';
+        return $this->surround($input);
     }
 
     public function submit($label)

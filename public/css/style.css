@@ -314,7 +314,7 @@ input:invalid {
 
 textarea {
   background-color: #fffcfa;
-  border: none;
+  border: 1px solid #ffbd66;
   font-size: large;
   width: 100%;
   color: #403f3e;
@@ -344,6 +344,83 @@ textarea:focus {
   border: 1px solid #ffbd66;
 }
 
+select {
+  width: 100%;
+  border: 1px solid #ffbd66;
+  height: 55px;
+  font-size: 1.3em;
+}
+
+.toggle {
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 72% 6% 22%;
+  grid-template-rows: 100;
+}  
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #ffbd66;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #ffbd66;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
 .envoi {
   display: flex;
   flex-wrap: wrap;
@@ -477,6 +554,26 @@ td {
   margin: auto;
 }
 
+.post-edition {
+  width: 90%;
+  padding: 55px 0 55px 0;
+  margin: auto;
+  display: grid;
+  grid-template-rows: 2;
+}
+
+.grid-left {
+  grid-row-start: 1;
+}
+
+.grid-right {
+  grid-row-start: 2;
+}
+
+.grid-right-monorow {
+  grid-row-start: 1;
+}
+
 img {
   max-width: 95%;
 }
@@ -520,6 +617,14 @@ form {
   background-color: #a6daff;
   border-color: #a6daff;
   color: #597080;
+}
+
+
+button {
+  color: #804040;
+  border: none;
+  background-color: #fffcfa;
+  cursor: pointer;
 }
 
 
@@ -598,6 +703,32 @@ form {
   .article {
     max-width: 29%;
     min-width: 28%;
+  }
+
+  .post-edition {
+    width: 90%;
+    padding: 55px 0 55px 0;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 72% 6% 22%;
+  }  
+
+  .toggle {
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 72% 6% 22%;
+    grid-template-rows: 100;
+  }  
+
+  .grid-left {
+    grid-column-start: 1;
+    grid-row-start: 1;
+  }
+  
+  .grid-right {
+    grid-column-start: 3;
+    grid-row-start: 1;
   }
 }
 

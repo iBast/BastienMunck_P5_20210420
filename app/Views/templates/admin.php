@@ -35,7 +35,8 @@
             </svg></label>
         <nav class="menu">
             <ul>
-                <li><a href="?p=admin.blog.index">Gestion du blog</a></li>
+                <li><a href="?p=admin.dashboard.index">Administration</a></li>
+                <li><a href="?p=admin.posts.index">Gestion des articles</a></li>
                 <li><a href="?p=admin.users.index">Gestion des utilisateurs</a></li>
                 <li><a href="index.php" class="bouton">Retour au site</a></li>
             </ul>
@@ -80,7 +81,7 @@
         <details open>
             <summary>Menu</summary>
             <ul>
-                <li><a href="?p=blog.show">Blog</a></li>
+                <li><a href="?p=posts.show">Blog</a></li>
                 <li><a href="index.php#contact">Contactez-moi</a></li>
             </ul>
         </details>
