@@ -1,5 +1,7 @@
 <section class='account-creation'>
     <h1>Connexion</h1>
+    <br>
+    <p class="center">Pas encore de compte ? <a href="?p=users.signup">Créer un compte</a></p>
     <form action="#" method="post">
         <?= $form->input('username', 'Nom d\'utilisateur', ['required' => 'required', 'autocomplete' => 'current-password']); ?>
         <br>

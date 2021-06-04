@@ -11,44 +11,42 @@
 
     </article>
     <h2>Commentaires :</h2>
-    <div class="comment">
-        <p>De : <b>Auteur</b> Posté le : <em>05/05/2021</em></p>
-        <p>turpis egestas. Vivamus aliquam condimentum venenatis. Integer efficitur augue sed eros
-            fringilla rhoncus. Curabitur venenatis non quam non sodales
-            iaculis dapibus consequat. Aliquam et lacus nibh. Sed sodales viverra accumsan. Mauris ac
-            efficitur sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames
-            ac</p>
-    </div>
+    <?php
+    if (empty($comments)) { ?>
+        <img src="../public/img/site/comments.svg" alt="pas de commentaires">
+        <br> <br>
+        <p>Aucun commentaire pour le moment, n'hésitez pas à lancer la discution</p>
+        <?php } else {
+        foreach ($comments as $comment) : ?>
+            <div class="comment">
+                <div><img src="../public/img/avatar/<?= $comment->authorpic; ?>" class="avatar-comment" alt="Photo de profil"></div>
+                <div>
+                    <p>De : <b><?= $comment->author; ?></b> Posté le : <em><?= $comment->date; ?></em></p>
+                    <p><?= $comment->content; ?></p>
+                </div>
 
-    <div class="comment">
-        <p>De : <b>Auteur</b> Posté le : <em>05/05/2021</em></p>
-        <p>turpis egestas. Vivamus aliquam condimentum venenatis. Integer efficitur augue sed eros
-            fringilla rhoncus. Curabitur venenatis non quam non sodales
-            iaculis dapibus consequat. Aliquam et lacus nibh. Sed sodales viverra accumsan. Mauris ac
-            efficitur sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames
-            ac</p>
-    </div>
 
-    <div class="comment">
-        <p>De : <b>Auteur</b> Posté le : <em>05/05/2021</em></p>
-        <p>turpis egestas. Vivamus aliquam condimentum venenatis. Integer efficitur augue sed eros
-            fringilla rhoncus. Curabitur venenatis non quam non sodales
-            iaculis dapibus consequat. Aliquam et lacus nibh. Sed sodales viverra accumsan. Mauris ac
-            efficitur sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames
-            ac</p>
-    </div>
+            </div>
+    <?php endforeach;
+    } ?>
+
 
     <h2>Laisser un commentaire :</h2>
-    <p>Vous devez être connecté pour laisser un commentaire : </p><br>
-    <h3><a href="login.html">Connexion</a></h3>
+    <?php
+    if ($session->get('auth') != null) {
+    ?>
+        <form action="?p=blog.addcomment" method="POST">
+            <?= $form->input('post', null, ['type' => 'hidden', 'value' => $post->id]); ?>
+            <?= $form->input('content', null, ['type' => 'textarea', 'rows' => 10]); ?>
+            <?= $form->submit('Envoyer le commentaire'); ?>
+        </form>
+    <?php
+    } else {
+    ?>
+        <p>Vous devez être connecté pour laisser un commentaire : </p><br>
+        <h3><a href="?p=users.login">Connexion</a></h3>
 
-    <div class="form-text">
-        <label for="message">Votre message : </label><br><br>
-        <textarea name="message" id="message" rows="10"></textarea>
-    </div>
-    <div class="send-comment">
-        <input type="submit" value="Envoyer le commentaire">
-    </div>
+    <?php } ?>
 
 
 

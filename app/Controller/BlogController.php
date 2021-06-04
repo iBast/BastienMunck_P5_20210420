@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\App;
+use Core\Form\Form;
+use App\Action\CommentCheck;
 use App\Controller\AppController;
 
 class BlogController extends AppController
@@ -13,6 +15,7 @@ class BlogController extends AppController
         parent::__construct($session, $flash, $request, $dbAuth);
         $this->loadModel('post');
         $this->loadModel('category');
+        $this->loadModel('comment');
     }
 
     public function index()
@@ -47,6 +50,30 @@ class BlogController extends AppController
         $time = strtotime($post->lastUpdate);
         $date = date("d/m/y", $time);
         $heure = date("H:i", $time);
-        $this->render('blog.show', compact('post', 'date', 'heure'));
+        $session = $this->session;
+
+        $comments = $this->comment->list($this->request->getGetValue('id'));
+        $form = new Form();
+        $this->render('blog.show', compact('post', 'date', 'heure', 'comments', 'session', 'form'));
+    }
+
+    public function addcomment()
+    {
+        if ($this->request->hasPost()) {
+            $commentCheck = new CommentCheck($this->request, $this->session);
+            $errorMessage = $commentCheck->getErrorMessage();
+            $this->flash->danger($errorMessage);
+            if ($errorMessage == null) {
+                $comment = [
+                    'author' => $this->session->get('auth'),
+                    'post' => $this->request->getPostValue('post'),
+                    'content' => $this->request->getPostValue('content'),
+                ];
+                $this->comment->create($comment);
+                $this->flash->success('Le commentaire a été enregistré, un administrateur le validera bientôt');
+
+                return $this->redirect('?p=blog.show&id=' . $this->request->getPostValue('post') . '');
+            }
+        }
     }
 }

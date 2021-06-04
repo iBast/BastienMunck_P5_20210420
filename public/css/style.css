@@ -45,7 +45,7 @@ nav a:hover {
   color: #ffdeb3;
 }
 
-.articles a:hover{
+.articles a:hover {
   color: #403f3e;
 }
 
@@ -450,6 +450,12 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+.avatar-comment {
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+}
+
 summary {
   color: #fffcfa;
   font-weight: 700;
@@ -506,6 +512,7 @@ article h2 {
 .comment {
   padding-top: 30px;
   text-align: justify;
+  display: flex;
 }
 
 .center {
