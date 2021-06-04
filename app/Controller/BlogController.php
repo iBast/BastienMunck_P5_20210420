@@ -17,7 +17,7 @@ class BlogController extends AppController
 
     public function index()
     {
-        $posts = $this->post->last();
+        $posts = $this->post->lastPublished();
         $categories = App::getInstance()->getTable('Category')->all();
         $this->render('blog.index', compact('posts', 'categories'));
     }
@@ -32,5 +32,21 @@ class BlogController extends AppController
         $categories = $this->category->all();
 
         $this->render('blog.category', compact('posts', 'categories', 'category'));
+    }
+
+    public function show()
+    {
+        $post = $this->post->findWithCategory($this->request->getGetValue('id'));
+        if ($post === false) {
+            $this->notFound();
+        }
+        if ($post->published != 1 & $this->session->get('role') < 2) {
+            $this->flash->danger('Cet article n\'est pas publié');
+            return $this->redirect('index.php?p=blog.index');
+        }
+        $time = strtotime($post->lastUpdate);
+        $date = date("d/m/y", $time);
+        $heure = date("H:i", $time);
+        $this->render('blog.show', compact('post', 'date', 'heure'));
     }
 }
