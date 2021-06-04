@@ -11,7 +11,7 @@
         <br>
         <div class="main-btn">
             <a href="#contact" class="btn btn-main"><span>LANCER VOTRE PROJET</span> </a>
-            <a href="blog.html" class="btn btn-outline">VOIR MON BLOG</a>
+            <a href="?p=blog.index" class="btn btn-outline">VOIR MON BLOG</a>
 
         </div>
     </div>

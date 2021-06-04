@@ -21,6 +21,10 @@ a {
   color: #597080;
 }
 
+a:hover {
+  color: #ffbd66;
+}
+
 nav a {
   font-size: x-large;
   text-decoration: none;
@@ -39,6 +43,10 @@ nav a:hover {
 
 .blog-post a:hover {
   color: #ffdeb3;
+}
+
+.articles a:hover{
+  color: #403f3e;
 }
 
 footer a {

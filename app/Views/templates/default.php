@@ -34,7 +34,7 @@
             </svg></label>
         <nav class="menu">
             <ul>
-                <li><a href="?p=blog.show">Blog</a></li>
+                <li><a href="?p=blog.index">Blog</a></li>
                 <li><a href="index.php#contact" class="bouton">Contactez-moi</a></li>
             </ul>
         </nav>
@@ -78,7 +78,7 @@
         <details open>
             <summary>Menu</summary>
             <ul>
-                <li><a href="?p=blog.show">Blog</a></li>
+                <li><a href="?p=blog.index">Blog</a></li>
                 <li><a href="index.php#contact">Contactez-moi</a></li>
             </ul>
         </details>
