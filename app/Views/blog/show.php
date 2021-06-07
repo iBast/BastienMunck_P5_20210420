@@ -13,13 +13,13 @@
     <h2>Commentaires :</h2>
     <?php
     if (empty($comments)) { ?>
-        <img src="../public/img/site/comments.svg" alt="pas de commentaires">
+        <img src="./img/site/comments.svg" alt="pas de commentaires">
         <br> <br>
         <p>Aucun commentaire pour le moment, n'hésitez pas à lancer la discution</p>
         <?php } else {
         foreach ($comments as $comment) : ?>
             <div class="comment">
-                <div><img src="../public/img/avatar/<?= $comment->authorpic; ?>" class="avatar-comment" alt="Photo de profil"></div>
+                <div><img src="./img/avatar/<?= $comment->authorpic; ?>" class="avatar-comment" alt="Photo de profil"></div>
                 <div>
                     <p>De : <b><?= $comment->author; ?></b> Posté le : <em><?= date('d/m/y', strtotime($comment->date)); ?></em></p>
                     <p><?= $comment->content; ?></p>
