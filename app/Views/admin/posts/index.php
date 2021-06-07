@@ -17,10 +17,7 @@
                 <td><?= htmlspecialchars($post->category); ?></td>
                 <td><?= htmlspecialchars($post->author); ?></td>
                 <td><?= POST_STATUS[(htmlspecialchars($post->published))]; ?></td>
-                <td><?php
-                    $time = strtotime($post->lastUpdate);
-                    $lastUpdate = date("d/m/y H:i ", $time);
-                    echo $lastUpdate; ?></td>
+                <td><?= date("d/m/y H:i ", strtotime($post->lastUpdate)); ?></td>
                 <td><a href="?p=blog.show&id=<?= $post->id; ?>"><span class="material-icons">
                             visibility
                         </span></a>
