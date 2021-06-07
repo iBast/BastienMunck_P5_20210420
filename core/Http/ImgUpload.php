@@ -6,8 +6,8 @@ class ImgUpload
 {
     private $directory;
     public $redim = true;
-    public $redim_height = 400;
-    public $redim_width = 400;
+    public $redim_height = 200;
+    public $redim_width = 200;
 
     const DIR_TEMPORARY = 'tmp_name';
 
@@ -34,27 +34,22 @@ class ImgUpload
                     if (\file_exists($destination)) {
                         \unlink($destination);
                     }
-
-                    $taille = getimagesize($_FILES[$key][self::DIR_TEMPORARY]);
-                    $largeur = $taille[0];
-                    $hauteur = $taille[1];
-                    $largeur_miniature = $this->redim_width;
-                    $hauteur_miniature = $hauteur / $largeur * $this->redim_width;
-
                     $img = \imagecreatefromjpeg($_FILES[$key][self::DIR_TEMPORARY]);
-                    $im_miniature = \imagecreatetruecolor(
-                        $largeur_miniature,
-                        $hauteur_miniature
-                    );
-
+                    $size = min(imagesx($img), imagesy($img));
+                    if (imagesx($img) * 1.2 < imagesy($img)) {
+                        $img_min = \imagecrop($img, ['x' => 0, 'y' => $size / 2, 'width' => $size, 'height' => $size]);
+                    } elseif (imagesx($img) > imagesy($img)  * 1.2) {
+                        $img_min = \imagecrop($img, ['x' => $size / 2, 'y' => 0, 'width' => $size, 'height' => $size]);
+                    } else {
+                        $img_min = \imagecrop($img, ['x' => 0, 'y' => 0, 'width' => $size, 'height' => $size]);
+                    }
+                    if ($img_min !== FALSE) {
+                        \imagejpeg($img_min, $destination);
+                        \imagedestroy($img_min);
+                    }
+                    \imagedestroy($img);
 
                     $retour = $name . '.' . $extension;
-
-                    if (!\imagecopyresampled($im_miniature, $img, 0, 0, 0, 0, $largeur_miniature, $hauteur_miniature, $largeur, $hauteur)) {
-                        $retour = 'erreur creation miniature'  . ' (imagecopyresampled ' . $destination . ')';
-                    } elseif (!\imagejpeg($im_miniature, $destination, 90)) {
-                        $retour = 'erreur image' . ' (imagejpeg '  . $destination . ')';
-                    }
                 } catch (\InvalidArgumentException $ex) {
                     $retour =  $ex->getMessage();
                 }

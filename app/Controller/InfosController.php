@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use Core\Http\Request;
 use App\Manager\InfosManager;
 use App\Action\ContactCheckAction;
 

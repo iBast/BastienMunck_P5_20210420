@@ -34,7 +34,17 @@
             </svg></label>
         <nav class="menu">
             <ul>
-                <li><a href="?p=blog.show">Blog</a></li>
+                <?php
+                if ($this->session->get('auth') != null) {
+                ?>
+                    <li><a href="?p=users.account">Mon compte</a></li>
+                <?php
+                } else {
+                ?>
+                    <li><a href="?p=users.login">Connexion</a></li>
+                    <li><a href="?p=users.signup">Inscription</a></li>
+                <?php } ?>
+                <li><a href="?p=blog.index">Blog</a></li>
                 <li><a href="index.php#contact" class="bouton">Contactez-moi</a></li>
             </ul>
         </nav>
@@ -78,7 +88,7 @@
         <details open>
             <summary>Menu</summary>
             <ul>
-                <li><a href="?p=blog.show">Blog</a></li>
+                <li><a href="?p=blog.index">Blog</a></li>
                 <li><a href="index.php#contact">Contactez-moi</a></li>
             </ul>
         </details>

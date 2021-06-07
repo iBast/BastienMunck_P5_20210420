@@ -3,7 +3,7 @@
 <table class="profiletable">
     <tr>
         <td>Photo de profil</td>
-        <td> <img src="../public/img/avatar/<?= htmlspecialchars($user->profilePic); ?>" alt="Photo de profil" height="100px"></td>
+        <td> <img src="../public/img/avatar/<?= htmlspecialchars($user->profilePic); ?>" alt="Photo de profil" class="avatar"></td>
     </tr>
     <tr>
         <td>Nom d'utilisateur</td>

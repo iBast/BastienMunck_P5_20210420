@@ -21,7 +21,10 @@
                     $time = strtotime($post->lastUpdate);
                     $lastUpdate = date("d/m/y H:i ", $time);
                     echo $lastUpdate; ?></td>
-                <td><a href="?p=admin.posts.edit&id=<?= $post->id; ?>"><span class="material-icons">
+                <td><a href="?p=blog.show&id=<?= $post->id; ?>"><span class="material-icons">
+                            visibility
+                        </span></a>
+                    <a href="?p=admin.posts.edit&id=<?= $post->id; ?>"><span class="material-icons">
                             edit
                         </span></a>
                     <form action='?p=admin.posts.delete' method="post" style="display: inline;">
