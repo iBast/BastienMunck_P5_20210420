@@ -22,6 +22,12 @@ class DBAuth
         $this->flash = new FlashMessage($this->session);
     }
 
+    /**
+     * getUserId
+     *
+     * Return userID if connected
+     * @return void
+     */
     public function getUserId()
     {
         if ($this->logged()) {
@@ -49,11 +55,21 @@ class DBAuth
         $this->flash->danger('Votre mot de passe doit être modifé');
     }
 
+    /**
+     * logged
+     *
+     * @return void
+     */
     public function logged()
     {
         return $this->session->get('auth') != null;
     }
 
+    /**
+     * logout
+     *
+     * @return void
+     */
     public function logout()
     {
         if ($this->session->get('auth') != null) {

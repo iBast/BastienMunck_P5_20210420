@@ -25,6 +25,21 @@ a:hover {
   color: #ffbd66;
 }
 
+#logo {
+  margin-left: 0.5em;
+  vertical-align: middle;
+  font-size: x-large;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#logo a {
+  text-decoration: none;
+  color: #597080;
+}
+
 nav a {
   font-size: x-large;
   text-decoration: none;
@@ -49,14 +64,6 @@ nav a:hover {
   color: #403f3e;
 }
 
-footer a {
-  color: #ffdeb3;
-}
-
-footer a:hover {
-  color: #ffbd66;
-}
-
 .profil a {
   color: #fffcfa;
 }
@@ -65,19 +72,12 @@ footer a:hover {
   color: #ffdeb3;
 }
 
-#logo {
-  margin-left: 0.5em;
-  vertical-align: middle;
-  font-size: x-large;
-  text-decoration: none;
-  display: inline-block;
-  margin-top: auto;
-  margin-bottom: auto;
+footer a {
+  color: #ffdeb3;
 }
 
-#logo a {
-  text-decoration: none;
-  color: #597080;
+footer a:hover {
+  color: #ffbd66;
 }
 
 nav ul {
@@ -117,6 +117,10 @@ nav ul {
 
 #menu-checkbox:focus + .menu-bouton {
   outline: #ffbd66 auto 5px;
+}
+
+img {
+  max-width: 95%;
 }
 
 .hero-banner img {
@@ -365,7 +369,7 @@ select {
   display: grid;
   grid-template-columns: 72% 6% 22%;
   grid-template-rows: 100;
-}  
+}
 
 /* The switch - the box around the slider */
 .switch {
@@ -391,11 +395,11 @@ select {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
-.slider:before {
+.slider::before {
   position: absolute;
   content: "";
   height: 26px;
@@ -415,7 +419,7 @@ input:focus + .slider {
   box-shadow: 0 0 1px #ffbd66;
 }
 
-input:checked + .slider:before {
+input:checked + .slider::before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
@@ -426,7 +430,7 @@ input:checked + .slider:before {
   border-radius: 34px;
 }
 
-.slider.round:before {
+.slider.round::before {
   border-radius: 50%;
 }
 .envoi {
@@ -593,10 +597,6 @@ td {
   grid-row-start: 1;
 }
 
-img {
-  max-width: 95%;
-}
-
 form {
   padding-top: 25px;
 }
@@ -637,7 +637,6 @@ form {
   border-color: #a6daff;
   color: #597080;
 }
-
 
 button {
   color: #804040;
@@ -744,7 +743,7 @@ button {
     grid-column-start: 1;
     grid-row-start: 1;
   }
-  
+
   .grid-right {
     grid-column-start: 3;
     grid-row-start: 1;
