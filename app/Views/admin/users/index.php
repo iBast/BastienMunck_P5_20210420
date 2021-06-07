@@ -14,7 +14,7 @@
                 <td><?php if ($user->verifiedAt != null) { ?>
                         <span class="tag tag-valid">Validé</span>
                     <?php } else { ?>
-                        <span class="tag tag-pending">En attente</span>
+                        <span class="tag tag-warning">En attente</span>
                     <?php } ?>
                 </td>
                 <td><?= USER_ROLE[$user->role]; ?></td>

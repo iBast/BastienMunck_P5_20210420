@@ -40,4 +40,16 @@ class CommentTable extends Table
         WHERE comments.status = 2"
         );
     }
+
+    public function commentFromUser($userId)
+    {
+        return $this->query(
+            "SELECT comments.id, comments.content, comments.status, comments.date, users.username as author, posts.title as post
+        FROM comments
+        Left JOIN users ON comments.author = users.id
+        Left JOIN posts ON comments.post = posts.id
+        WHERE comments.author = ?",
+            [$userId]
+        );
+    }
 }

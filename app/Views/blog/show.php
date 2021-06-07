@@ -34,15 +34,21 @@
     <h2>Laisser un commentaire :</h2>
     <?php
     if ($session->get('auth') != null) {
+        if ($session->get('role') != 0) {
     ?>
-        <form action="?p=blog.addcomment" method="POST">
-            <?= $form->input('post', null, ['type' => 'hidden', 'value' => $post->id]); ?>
-            <?= $form->input('content', null, ['type' => 'textarea', 'rows' => 10]); ?>
-            <?= $form->submit('Envoyer le commentaire'); ?>
-        </form>
-    <?php
+            <form action="?p=blog.addcomment" method="POST">
+                <?= $form->input('post', null, ['type' => 'hidden', 'value' => $post->id]); ?>
+                <?= $form->input('content', null, ['type' => 'textarea', 'rows' => 10]); ?>
+                <?= $form->submit('Envoyer le commentaire'); ?>
+            </form>
+        <?php
+        } else {
+        ?>
+            <p>Votre compte est toujours en attente de validation <br> <a href="?p=users.resendmail">Cliquez ici pour renvoyer le mail d\'activation</a></p>
+        <?php
+        }
     } else {
-    ?>
+        ?>
         <p>Vous devez être connecté pour laisser un commentaire : </p><br>
         <h3><a href="?p=users.login">Connexion</a></h3>
 

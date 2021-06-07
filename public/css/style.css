@@ -561,7 +561,13 @@ td {
   color: #4b802d;
 }
 
-.tag-pending {
+.tag-warning {
+  border-color: #807f73;
+  background-color: #fffe99;
+  color: #807f73;
+}
+
+.tag-danger {
   border-color: #804040;
   background-color: #fcc;
   color: #804040;

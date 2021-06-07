@@ -22,3 +22,31 @@
         <div class="btn btn-outline">Modifier le profil</div>
     </a>
 </div>
+
+<div class="account-creation">
+    <h2>Mes commentaires :</h2>
+    <table>
+        <tr>
+            <th>Commentaire</th>
+            <th>Article</th>
+            <th>Statut</th>
+            <th>Supprimer</th>
+        </tr>
+        <?php foreach ($comments as $comment) : ?>
+            <tr>
+                <td><?= htmlspecialchars($comment->content); ?></td>
+                <td><?= htmlspecialchars($comment->post); ?></td>
+                <td><span class="tag tag-<?= $commentStatus[$comment->status]; ?>"><?= COMMENT_STATUS[$comment->status]; ?></span></td>
+                <td>
+                    <form action='?p=blog.deleteComment' method="post" style="display: inline;">
+                        <button class="material-icons danger">
+                            clear
+                        </button>
+                        <?= $form->input('id', null, ['type' => 'hidden', 'value' => $comment->id]); ?>
+                    </form>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+
+    </table>
+</div>

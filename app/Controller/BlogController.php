@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\App;
 use Core\Form\Form;
 use App\Action\CommentCheck;
+use App\Action\DeleteComCheck;
 use App\Controller\AppController;
 
 class BlogController extends AppController
@@ -75,5 +76,22 @@ class BlogController extends AppController
                 return $this->redirect('?p=blog.show&id=' . $this->request->getPostValue('post') . '');
             }
         }
+    }
+
+    public function deleteComment()
+    {
+
+        if ($this->request->hasPost()) {
+            $comment = $this->comment->find($this->request->getPostValue('id'));
+            $user = $this->session->get('auth');
+            $deleteComCheck = new DeleteComCheck($this->request, $this->session, $comment, $user);
+            $errorMessage = $deleteComCheck->getErrorMessage();
+            $this->flash->danger($errorMessage);
+            if ($errorMessage == null) {
+                $this->comment->delete($this->request->getPostValue('id'));
+                $this->flash->success('Le commentaire a été supprimé');
+            }
+        }
+        return $this->redirect('?p=users.account');
     }
 }
