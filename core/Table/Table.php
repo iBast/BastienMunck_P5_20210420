@@ -93,4 +93,14 @@ class Table
     {
         return $this->query("DELETE FROM {$this->table} WHERE id = ?", [$colId], true);
     }
+
+    public function countTable()
+    {
+        return $this->query("SELECT COUNT(id) as id FROM {$this->table}");
+    }
+
+    public function count($key, $value)
+    {
+        return $this->query("SELECT COUNT(*) AS $key  FROM {$this->table} WHERE $key = ?", [$value], true);
+    }
 }
