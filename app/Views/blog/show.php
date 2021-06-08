@@ -4,6 +4,7 @@
         <h1><?= $post->title; ?></h1>
         <p class="center"><em>Dans <?= $post->category; ?></em></p>
         <p class="center"><em>Par <?= $post->author; ?> - Mise à jour le : <?= $date ?> à <?= $heure; ?></em></p>
+        <br><br>
         <p><?= $post->chapo; ?>
         </p>
         <br><br><br>
