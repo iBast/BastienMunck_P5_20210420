@@ -18,7 +18,7 @@
 
 </section>
 <section class="contact" id="contact">
-    <h2>Contactez-moi</h2>
+    <h2 class="primary">Contactez-moi</h2>
     <form method="POST" action="#">
         <div class="form">
 
@@ -48,7 +48,8 @@
                 <div class="profil">
                     <p>Bastien Munck <br>
                         <a href="mailto:hello@bastienmunck.fr">hello@bastienmunck.fr</a> <br>
-                        06 08 72 41 62 <br><br>
+                        06 08 72 41 62 <br>
+                        <a href="/">Télécharger mon CV</a> <br><br>
                     </p>
                     <p>
                         <a href="https://twitter.com/_iBast"><img src="img/site/Twitter_Bird.svg" height="32" width="32" alt="twitter" /> |</a>

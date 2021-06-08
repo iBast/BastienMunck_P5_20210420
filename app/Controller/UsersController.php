@@ -12,6 +12,7 @@ use App\Action\RecoverCheckAction;
 use App\Action\ChangePassCheckAction;
 use App\Action\DeleteAccountCheckAction;
 use App\Action\UpdateAccountCheckAction;
+use Core\Form\Form;
 
 class UsersController extends AppController
 {
@@ -21,6 +22,7 @@ class UsersController extends AppController
     {
         parent::__construct($session, $flash, $request, $dbAuth);
         $this->loadModel('user');
+        $this->loadModel('comment');
         $this->manager = new UserManager($request, $session, $flash);
     }
     public function signup()
@@ -94,7 +96,10 @@ class UsersController extends AppController
         if ($user->verifiedAt == null) {
             $this->flash->warning('Votre compte est toujours en attente de validation <br> <a href="?p=users.resendmail">Cliquez ici pour renvoyer le mail d\'activation</a>');
         }
-        $this->render('users.account', compact('user'));
+        $commentStatus = array(0 => 'warning', 1 => 'valid', 2 => 'danger');
+        $comments = $this->comment->commentFromUser($user->id);
+        $form = new Form();
+        $this->render('users.account', compact('user', 'comments', 'form', 'commentStatus'));
     }
 
     public function logout(): void

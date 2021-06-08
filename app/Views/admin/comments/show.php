@@ -1,4 +1,4 @@
-<h1>Gestion des commentaires : A valider</h1>
+<h1>Gestion des commentaires : <?= $title; ?></h1>
 
 <section class="account-creation">
     <div class="form">
