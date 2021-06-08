@@ -36,4 +36,23 @@ class CommentsController extends AdminController
             $this->redirect('?p=admin.comments.index');
         }
     }
+
+    public function show()
+    {
+        if ($this->request->hasGetValue('cat') != null) {
+            if ($this->request->getGetValue('cat') == 'validated') {
+                $comments = $this->comment->AllValidated();
+                $title = 'Validés';
+            }
+            if ($this->request->getGetValue('cat') == 'rejected') {
+                $comments = $this->comment->listRejected();
+                $title = 'Rejetés';
+            }
+        } else {
+            $comments = $this->comment->allWithJoin();
+            $title = 'Tous les commentaires';
+        }
+        $form = new Form();
+        $this->render('admin.comments.show', compact('comments', 'form', 'title'));
+    }
 }

@@ -19,10 +19,21 @@ class CommentTable extends Table
         );
     }
 
+    public function AllValidated()
+    {
+        return $this->query(
+            "SELECT comments.id, comments.content, comments.date, users.username as author, posts.title as post, comments.post as postid
+        FROM comments
+        Left JOIN users ON comments.author = users.id
+        Left JOIN posts ON comments.post = posts.id
+        WHERE comments.status = 1"
+        );
+    }
+
     public function listPending()
     {
         return $this->query(
-            "SELECT comments.id, comments.content, comments.date, users.username as author, posts.title as post, posts.id as postid
+            "SELECT comments.id, comments.content, comments.date, users.username as author, posts.title as post, comments.post as postid
         FROM comments
         Left JOIN users ON comments.author = users.id
         Left JOIN posts ON comments.post = posts.id
@@ -30,10 +41,20 @@ class CommentTable extends Table
         );
     }
 
+    public function allWithJoin()
+    {
+        return $this->query(
+            "SELECT comments.id, comments.content, comments.date, users.username as author, posts.title as post, comments.post as postid
+        FROM comments
+        Left JOIN users ON comments.author = users.id
+        Left JOIN posts ON comments.post = posts.id"
+        );
+    }
+
     public function listRejected()
     {
         return $this->query(
-            "SELECT comments.id, comments.content, comments.date, users.username as author, posts.title as post, posts.id as postid
+            "SELECT comments.id, comments.content, comments.date, users.username as author, posts.title as post, comments.post as postid
         FROM comments
         Left JOIN users ON comments.author = users.id
         Left JOIN posts ON comments.post = posts.id
