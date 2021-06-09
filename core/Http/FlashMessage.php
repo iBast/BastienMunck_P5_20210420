@@ -2,6 +2,11 @@
 
 namespace Core\Http;
 
+/**
+ * FlashMessage 
+ * 
+ * Pass an information message which been shown one time to the user
+ */
 class FlashMessage
 {
 

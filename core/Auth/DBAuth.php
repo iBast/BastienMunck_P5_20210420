@@ -26,7 +26,7 @@ class DBAuth
      * getUserId
      *
      * Return userID if connected
-     * @return void
+     * @return mixed
      */
     public function getUserId()
     {
@@ -38,11 +38,12 @@ class DBAuth
     }
 
     /**
+     * Log user in session
+     * 
      * @param $username
-     * @param $password
      * @return boolean
      */
-    public function login($username)
+    public function login($username): bool
     {
 
         $user = $this->database->prepare('SELECT * FROM users WHERE username = ?', [$username], NULL, true);

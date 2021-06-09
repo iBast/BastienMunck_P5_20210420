@@ -6,6 +6,11 @@ use Swift_Mailer;
 use Swift_Message;
 use Swift_SmtpTransport;
 
+/**
+ * Mail 
+ * 
+ * use to send mail, configuration is in App/cinfig/config.php
+ */
 class Mail
 {
     private $smtp_username;
