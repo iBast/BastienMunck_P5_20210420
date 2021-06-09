@@ -24,6 +24,7 @@ class BlogController extends AppController
 
     public function index()
     {
+        App::getInstance()->setTitle("Blog");
         $posts = $this->post->lastPublished();
         $categories = App::getInstance()->getTable('Category')->all();
         $this->render('blog.index', compact('posts', 'categories'));
@@ -31,6 +32,7 @@ class BlogController extends AppController
 
     public function category()
     {
+        App::getInstance()->setTitle("Blog");
         $category = $this->category->find($this->request->getGetValue('id'));
         if ($category === false) {
             $this->notFound();
@@ -43,6 +45,7 @@ class BlogController extends AppController
 
     public function show()
     {
+        App::getInstance()->setTitle("Blog - Article");
         $post = $this->post->findWithCategory($this->request->getGetValue('id'));
         if ($post === false) {
             $this->notFound();
@@ -63,6 +66,7 @@ class BlogController extends AppController
 
     public function addcomment()
     {
+        App::getInstance()->setTitle("Ajouter un  commentaire");
         if ($this->request->hasPost()) {
             $commentCheck = new CommentCheck($this->request, $this->session);
             $errorMessage = $commentCheck->getErrorMessage();
@@ -83,7 +87,6 @@ class BlogController extends AppController
 
     public function deleteComment()
     {
-
         if ($this->request->hasPost()) {
             $comment = $this->comment->find($this->request->getPostValue('id'));
             $user = $this->session->get('auth');

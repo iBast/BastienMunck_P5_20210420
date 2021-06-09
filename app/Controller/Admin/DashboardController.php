@@ -2,6 +2,8 @@
 
 namespace App\Controller\Admin;
 
+use App\App;
+
 /**
  * DashboardController
  */
@@ -22,6 +24,7 @@ class DashboardController extends AdminController
 
     public function index()
     {
+        App::getInstance()->setTitle("Dashbord Administration");
         $count = [
             'usertable' => $this->user->countTable(),
             'usermail' => $this->user->count('role', ROLE_NEWBIE),

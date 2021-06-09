@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\App;
 use Core\Form\Form;
 
 /**
@@ -17,6 +18,7 @@ class CommentsController extends AdminController
 
     public function index()
     {
+        App::getInstance()->setTitle("Gestion des commentaires");
         $comments = $this->comment->listPending();
         $form = new Form;
         $this->render('admin.comments.index', compact('comments', 'form'));
@@ -42,6 +44,7 @@ class CommentsController extends AdminController
 
     public function show()
     {
+        App::getInstance()->setTitle("Gestion  des commentaires");
         if ($this->request->hasGetValue('cat') != null) {
             if ($this->request->getGetValue('cat') == 'validated') {
                 $comments = $this->comment->AllValidated();

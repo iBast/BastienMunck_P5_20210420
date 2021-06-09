@@ -25,6 +25,7 @@ class UsersController extends AdminController
 
     public function index()
     {
+        App::getInstance()->setTitle("Gestion des utilisateurs");
         $users = $this->user->all();
         $this->render('admin.users.index', compact('users'));
     }
