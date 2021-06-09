@@ -5,6 +5,9 @@ namespace App\Controller;
 use App\Manager\InfosManager;
 use App\Action\ContactCheckAction;
 
+/**
+ * InfosController generic pages controller
+ */
 class InfosController extends AppController
 {
     public function __construct($session, $flash, $request, $dbAuth)

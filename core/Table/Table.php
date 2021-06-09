@@ -8,7 +8,7 @@ use Core\Database\MysqlDatabase;
 /**
  * Class Table
  * 
- * CRUD a given Table
+ * find in Table, you can use heritage for specificities in tables
  */
 class Table
 {

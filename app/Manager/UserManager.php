@@ -8,6 +8,11 @@ use App\Action\UserMail;
 use Core\Http\ImgUpload;
 
 
+/**
+ * UserManager
+ * 
+ * process the logic for the controller
+ */
 class UserManager
 {
 

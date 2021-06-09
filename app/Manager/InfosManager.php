@@ -5,6 +5,11 @@ namespace App\Manager;
 use Core\Http\Request;
 use App\Action\UserMail;
 
+/**
+ * InfosManager
+ * 
+ * process the logic for the controller
+ */
 class InfosManager
 {
     private $request;

@@ -5,6 +5,11 @@ namespace App\Action;
 use Core\Config;
 use Core\Mail\Mail;
 
+/**
+ * UserMail
+ * 
+ * configuration for the email sent
+ */
 class UserMail
 {
 

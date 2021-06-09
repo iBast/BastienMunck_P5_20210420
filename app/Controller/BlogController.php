@@ -47,7 +47,7 @@ class BlogController extends AppController
         if ($post === false) {
             $this->notFound();
         }
-        if ($post->published != 1 & $this->session->get('role') < 2) {
+        if ($post->published != POST_PUBLISHED & $this->session->get('role') < ROLE_ADMIN) {
             $this->flash->danger('Cet article n\'est pas publié');
             return $this->redirect('index.php?p=blog.index');
         }
