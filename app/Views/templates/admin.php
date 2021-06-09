@@ -43,66 +43,68 @@
         </nav>
     </header>
     <div class="container">
-        <?php
-        if ($this->session->get('flash') != null) {
-        ?>
+        <div class="content-wrap">
+            <?php
+            if ($this->session->get('flash') != null) {
+            ?>
 
-            <div class="flashMessages">
-                <?php
-                if ($this->flash->get('danger')) : ?>
-                    <div class="alert alert-danger">
-                        <b>Erreur(s) :</b> <?= $this->flash->get('danger'); ?>
-                        <br>
-                    </div>
-                <?php endif;
-                if ($this->flash->get('success')) : ?>
-                    <div class="alert alert-success">
-                        <?= $this->flash->get('success'); ?>
-                        <br>
-                    </div>
-                <?php endif;
-                if ($this->flash->get('warning')) : ?>
-                    <div class="alert alert-warning">
-                        <?= $this->flash->get('warning'); ?>
-                        <br>
-                    </div>
-                <?php endif;
-                if ($this->flash->get('info')) : ?>
-                    <div class="alert alert-info">
-                        <?= $this->flash->get('info'); ?>
-                        <br>
-                    </div>
-            <?php endif;
-            } ?>
-            </div>
-            <?= $content; ?>
+                <div class="flashMessages">
+                    <?php
+                    if ($this->flash->get('danger')) : ?>
+                        <div class="alert alert-danger">
+                            <b>Erreur(s) :</b> <?= $this->flash->get('danger'); ?>
+                            <br>
+                        </div>
+                    <?php endif;
+                    if ($this->flash->get('success')) : ?>
+                        <div class="alert alert-success">
+                            <?= $this->flash->get('success'); ?>
+                            <br>
+                        </div>
+                    <?php endif;
+                    if ($this->flash->get('warning')) : ?>
+                        <div class="alert alert-warning">
+                            <?= $this->flash->get('warning'); ?>
+                            <br>
+                        </div>
+                    <?php endif;
+                    if ($this->flash->get('info')) : ?>
+                        <div class="alert alert-info">
+                            <?= $this->flash->get('info'); ?>
+                            <br>
+                        </div>
+                </div>
+        <?php endif;
+                } ?>
+
+        <?= $content; ?>
+        </div>
+        <footer>
+            <details>
+                <summary>Menu</summary>
+                <ul>
+                    <li><a href="?p=blog.index">Blog</a></li>
+                    <li><a href="index.php#contact">Contactez-moi</a></li>
+                </ul>
+            </details>
+            <details>
+                <summary>Mentions légales</summary>
+                <ul>
+                    <li><a href="?p=infos.terms">Mentions légales</a></li>
+                    <li><a href="?p=infos.privacy">Politique de confidentilité</a></li>
+                    <li><a href="?p=infos.show">Gestion des données personneles</a></li>
+                </ul>
+            </details>
+            <details>
+                <summary>Mon compte</summary>
+                <a href="?p=users.signup">Inscription</a>
+                <a href="?p=users.login">Connexion</a>
+                <a href="?p=users.logout">Déconnexion</a>
+                <a href="?p=users.account">Mon compte</a>
+                <a href="?p=admin.dashboard.index">Administration</a>
+            </details>
+        </footer>
     </div>
-    <footer>
-        <details open>
-            <summary>Menu</summary>
-            <ul>
-                <li><a href="?p=posts.show">Blog</a></li>
-                <li><a href="index.php#contact">Contactez-moi</a></li>
-            </ul>
-        </details>
-        <details open>
-            <summary>Mentions légales</summary>
-            <ul>
-                <li><a href="?p=infos.terms">Mentions légales</a></li>
-                <li><a href="?p=infos.privacy">Politique de confidentilité</a></li>
-                <li><a href="?p=infos.show">Gestion des données personneles</a></li>
-            </ul>
-        </details>
-        <details open>
-            <summary>Mon compte</summary>
-            <a href="?p=users.signup">Inscription</a>
-            <a href="?p=users.login">Connexion</a>
-            <a href="?p=users.logout">Déconnexion</a>
-            <a href="?p=users.account">Mon compte</a>
-            <a href="?p=admin.dashboard.index">Administration</a>
-        </details>
-    </footer>
-
 </body>
 
 </html>

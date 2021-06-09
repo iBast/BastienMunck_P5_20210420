@@ -8,6 +8,9 @@ use App\Action\CommentCheck;
 use App\Action\DeleteComCheck;
 use App\Controller\AppController;
 
+/**
+ * BlogController
+ */
 class BlogController extends AppController
 {
 

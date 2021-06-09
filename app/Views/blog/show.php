@@ -5,10 +5,13 @@
         <p class="center"><em>Dans <?= $post->category; ?></em></p>
         <p class="center"><em>Par <?= $post->author; ?> - Mise à jour le : <?= $date ?> à <?= $heure; ?></em></p>
         <br><br>
-        <p><?= $post->chapo; ?>
+        <p>
+        <pre><?= $post->chapo; ?></pre>
         </p>
         <br><br><br>
-        <p><?= $post->content; ?></p>
+        <p>
+        <pre><?= $post->content; ?></pre>
+        </p>
 
     </article>
     <h2>Commentaires :</h2>
