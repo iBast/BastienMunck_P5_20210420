@@ -7,6 +7,9 @@ use Core\Form\Form;
 use App\Action\UpdateAdminCheck;
 use App\Manager\Admin\UserManager;
 
+/**
+ * UsersController
+ */
 class UsersController extends AdminController
 {
     protected $request;

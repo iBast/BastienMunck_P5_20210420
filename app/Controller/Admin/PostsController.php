@@ -7,6 +7,9 @@ use Core\Form\Form;
 use App\Action\PostCheck;
 use App\Manager\Admin\PostManager;
 
+/**
+ * PostsController
+ */
 class PostsController extends AdminController
 {
     protected $request;

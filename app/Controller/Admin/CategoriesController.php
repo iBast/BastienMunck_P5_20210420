@@ -6,6 +6,9 @@ use Core\Form\Form;
 use App\Action\CategoryCheck;
 use App\Manager\Admin\CategoryManager;
 
+/**
+ * CategoriesController
+ */
 class CategoriesController extends AdminController
 {
     protected $request;

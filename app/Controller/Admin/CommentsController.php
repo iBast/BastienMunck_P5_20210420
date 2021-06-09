@@ -4,6 +4,9 @@ namespace App\Controller\Admin;
 
 use Core\Form\Form;
 
+/**
+ * CommentsController
+ */
 class CommentsController extends AdminController
 {
     public function __construct($session, $flash, $request, $dbAuth)
@@ -22,7 +25,7 @@ class CommentsController extends AdminController
     public function validate()
     {
         if ($this->request->hasGetValue('id')) {
-            $this->comment->update($this->request->getGetValue('id'), ['status' => 1]);
+            $this->comment->update($this->request->getGetValue('id'), ['status' => COMMENT_VALIDATED]);
             $this->flash->success('Le commentaire a été approuvé');
             $this->redirect('?p=admin.comments.index');
         }
@@ -31,7 +34,7 @@ class CommentsController extends AdminController
     public function reject()
     {
         if ($this->request->hasGetValue('id')) {
-            $this->comment->update($this->request->getGetValue('id'), ['status' => 2]);
+            $this->comment->update($this->request->getGetValue('id'), ['status' => COMMENT_REJECTED]);
             $this->flash->success('Le commentaire a été rejeté');
             $this->redirect('?p=admin.comments.index');
         }

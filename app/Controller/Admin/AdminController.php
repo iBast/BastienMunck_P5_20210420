@@ -6,6 +6,9 @@ use App\App;
 use Core\Auth\DBAuth;
 use App\Controller\AppController;
 
+/**
+ * AdminController
+ */
 class AdminController extends AppController
 {
     protected $template = 'admin';
@@ -24,7 +27,7 @@ class AdminController extends AppController
             $flash->danger('Vous devez être connecté pour accèder à cette page');
             $this->forbidden();
         }
-        if ($session->get('role') < 2) {
+        if ($session->get('role') < ROLE_ADMIN) {
             $flash->danger('Votre statut ne vous permet pas d\'accèder à cette page');
             $this->forbidden();
         }
