@@ -90,9 +90,7 @@
             <details>
                 <summary>Mentions légales</summary>
                 <ul>
-                    <li><a href="?p=infos.terms">Mentions légales</a></li>
-                    <li><a href="?p=infos.privacy">Politique de confidentilité</a></li>
-                    <li><a href="?p=infos.show">Gestion des données personneles</a></li>
+                    <li><a href="?p=infos.about">A propos</a></li>
                 </ul>
             </details>
             <details>

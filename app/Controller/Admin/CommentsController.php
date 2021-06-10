@@ -61,4 +61,13 @@ class CommentsController extends AdminController
         $form = new Form();
         $this->render('admin.comments.show', compact('comments', 'form', 'title'));
     }
+
+    public function delete()
+    {
+        if ($this->request->hasPost()) {
+            $this->comment->delete($this->request->getPostValue('id'));
+            $this->flash->success('Le commentaire a été supprimé');
+        }
+        return $this->redirect('?p=admin.comments.index');
+    }
 }

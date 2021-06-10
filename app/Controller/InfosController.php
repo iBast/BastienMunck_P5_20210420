@@ -41,4 +41,9 @@ class InfosController extends AppController
         $form = new \Core\Form\Form();
         $this->render('infos.home', compact('form'));
     }
+
+    public function about()
+    {
+        $this->render('infos.about');
+    }
 }
