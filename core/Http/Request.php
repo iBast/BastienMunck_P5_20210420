@@ -2,6 +2,11 @@
 
 namespace Core\Http;
 
+/**
+ * Request
+ * 
+ * Get and securise superglobals GET and POST
+ */
 class Request
 {
     private $_get;

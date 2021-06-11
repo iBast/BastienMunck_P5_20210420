@@ -37,6 +37,14 @@ class MysqlDatabase extends Database
         return $this->pdo;
     }
 
+    /**
+     * query
+     *
+     * @param  string $statement
+     * @param  string $class_name
+     * @param  bool $one 
+     * @return mixed
+     */
     public function query($statement, $class_name = null, $one = false)
     {
         $req = $this->getPDO()->query($statement);
@@ -60,6 +68,15 @@ class MysqlDatabase extends Database
         return $datas;
     }
 
+    /**
+     * prepare 
+     *
+     * @param  string $statement
+     * @param  array $attributes
+     * @param  string $class_name
+     * @param  bool $one
+     * @return mixed
+     */
     public function prepare($statement, $attributes, $class_name = null, $one = false)
     {
         $req = $this->getPDO()->prepare($statement);
@@ -85,6 +102,11 @@ class MysqlDatabase extends Database
         return $datas;
     }
 
+    /**
+     * lastInsertId
+     *
+     * @return int
+     */
     public function lastInsertId()
     {
         return $this->getPDO()->lastInsertId();

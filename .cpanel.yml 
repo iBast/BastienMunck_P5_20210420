@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/blog.bastienmunck.fr/
+    - /bin/cp -R images $DEPLOYPATH

@@ -2,8 +2,12 @@
 
 namespace App\Controller\Admin;
 
+use App\App;
 use Core\Form\Form;
 
+/**
+ * CommentsController
+ */
 class CommentsController extends AdminController
 {
     public function __construct($session, $flash, $request, $dbAuth)
@@ -14,6 +18,7 @@ class CommentsController extends AdminController
 
     public function index()
     {
+        App::getInstance()->setTitle("Gestion des commentaires");
         $comments = $this->comment->listPending();
         $form = new Form;
         $this->render('admin.comments.index', compact('comments', 'form'));
@@ -22,7 +27,7 @@ class CommentsController extends AdminController
     public function validate()
     {
         if ($this->request->hasGetValue('id')) {
-            $this->comment->update($this->request->getGetValue('id'), ['status' => 1]);
+            $this->comment->update($this->request->getGetValue('id'), ['status' => COMMENT_VALIDATED]);
             $this->flash->success('Le commentaire a été approuvé');
             $this->redirect('?p=admin.comments.index');
         }
@@ -31,7 +36,7 @@ class CommentsController extends AdminController
     public function reject()
     {
         if ($this->request->hasGetValue('id')) {
-            $this->comment->update($this->request->getGetValue('id'), ['status' => 2]);
+            $this->comment->update($this->request->getGetValue('id'), ['status' => COMMENT_REJECTED]);
             $this->flash->success('Le commentaire a été rejeté');
             $this->redirect('?p=admin.comments.index');
         }
@@ -39,6 +44,7 @@ class CommentsController extends AdminController
 
     public function show()
     {
+        App::getInstance()->setTitle("Gestion  des commentaires");
         if ($this->request->hasGetValue('cat') != null) {
             if ($this->request->getGetValue('cat') == 'validated') {
                 $comments = $this->comment->AllValidated();
@@ -54,5 +60,14 @@ class CommentsController extends AdminController
         }
         $form = new Form();
         $this->render('admin.comments.show', compact('comments', 'form', 'title'));
+    }
+
+    public function delete()
+    {
+        if ($this->request->hasPost()) {
+            $this->comment->delete($this->request->getPostValue('id'));
+            $this->flash->success('Le commentaire a été supprimé');
+        }
+        return $this->redirect('?p=admin.comments.index');
     }
 }

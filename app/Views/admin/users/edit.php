@@ -40,7 +40,9 @@
         <?= $form->submit('Enregistrer les modifications'); ?>
     </div>
 </form>
-<form action='?p=admin.users.deleteAccount' method="POST" style="display: inline">
-    <?= $form->input('userid', null, ['type' => 'hidden', 'value' => $user->id]); ?>
-    <button type="submit" class="btn btn-outline-danger">Supprimer le compte</button>
-</form>
+<?php if ($this->session->get('auth') != $user->id) : ?>
+    <form action='?p=admin.users.deleteAccount' method="POST" style="display: inline">
+        <?= $form->input('userid', null, ['type' => 'hidden', 'value' => $user->id]); ?>
+        <button type="submit" class="btn btn-outline-danger">Supprimer le compte</button>
+    </form>
+<?php endif ?>

@@ -14,6 +14,9 @@ use App\Action\DeleteAccountCheckAction;
 use App\Action\UpdateAccountCheckAction;
 use Core\Form\Form;
 
+/**
+ * UsersController
+ */
 class UsersController extends AppController
 {
     private $manager;
@@ -25,6 +28,7 @@ class UsersController extends AppController
         $this->loadModel('comment');
         $this->manager = new UserManager($request, $session, $flash);
     }
+
     public function signup()
     {
         App::getInstance()->setTitle("Création de compte");
@@ -53,7 +57,7 @@ class UsersController extends AppController
             if ($errorMessage == null) {
                 $this->dbAuth->login($this->request->getPostValue('username'), $this->request->getPostValue('password'));
                 if ($this->session->get('auth') != null) {
-                    return $this->redirect('?p=users.account');
+                    return $this->redirect('?p=blog.index');
                 }
                 return $this->redirect('?p=users.changePassword');
             }
@@ -63,6 +67,9 @@ class UsersController extends AppController
         $this->render('users.login', compact('form'));
     }
 
+    /**
+     * verifyToken verify the user email adress
+     */
     public function verifyToken()
     {
         if ($this->request->getGetValue('t') == null & $this->request->getGetValue('username') == null) {
@@ -83,11 +90,15 @@ class UsersController extends AppController
             return $this->redirect('?p=users.account');
         }
         $this->flash->danger("Aucune action a effectuer");
-        $this->render('users.verifyToken');
+        $this->render('infos.home');
     }
 
+    /**
+     * account access the user  in session account page
+     */
     public function account()
     {
+        App::getInstance()->setTitle("Mon compte");
         if ($this->session->get('auth') == null) {
             $this->flash->danger('Vous devez être connecté pour voir cette page');
             $this->redirect('?p=users.login');
@@ -108,6 +119,9 @@ class UsersController extends AppController
         $this->redirect('index.php');
     }
 
+    /**
+     * resendmail to verify the user email
+     */
     public function resendmail(): void
     {
         $user = $this->user->find($this->session->get('auth'));
@@ -118,12 +132,16 @@ class UsersController extends AppController
         if ($user) {
             $mail = new UserMail;
             $mail->signupMail($user->email, $user->username, $user->token);
+            $this->flash->success('Un nouvel email vous a été envoyé');
             $this->redirect('?p=users.account');
         }
         $this->flash->danger('Aucun n\'utilisateur n\'a été renseigné');
         $this->redirect('index.php');
     }
 
+    /**
+     * recover of forgotten password, send a mail with a new password and force the user to change the password
+     */
     public function recover()
     {
         App::getInstance()->setTitle("Mot de passe oublié");
@@ -141,6 +159,9 @@ class UsersController extends AppController
         $this->render('users.recover', compact('form'));
     }
 
+    /**
+     * changePassword of the current user in session
+     */
     public function changePassword()
     {
         App::getInstance()->setTitle("Modification du mot de passe");
@@ -158,6 +179,9 @@ class UsersController extends AppController
         $this->render('users.changePassword', compact('form'));
     }
 
+    /**
+     * updateAccount of the current user in session
+     */
     public function updateAccount()
     {
         App::getInstance()->setTitle("Modification du compte");
@@ -176,6 +200,10 @@ class UsersController extends AppController
         $this->render('users.updateAccount', compact('form', 'user'));
     }
 
+    /**
+     * deleteAccount of the current user in session
+     *
+     */
     public function deleteAccount()
     {
         App::getInstance()->setTitle("Suppression du compte");

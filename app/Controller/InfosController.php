@@ -5,6 +5,9 @@ namespace App\Controller;
 use App\Manager\InfosManager;
 use App\Action\ContactCheckAction;
 
+/**
+ * InfosController generic pages controller
+ */
 class InfosController extends AppController
 {
     public function __construct($session, $flash, $request, $dbAuth)
@@ -24,6 +27,9 @@ class InfosController extends AppController
     {
         $this->render('infos.forbidden');
     }
+    /**
+     * home : homepage 
+     */
     public function home()
     {
         if ($this->request->hasPost()) {
@@ -37,5 +43,10 @@ class InfosController extends AppController
         }
         $form = new \Core\Form\Form();
         $this->render('infos.home', compact('form'));
+    }
+
+    public function about()
+    {
+        $this->render('infos.about');
     }
 }

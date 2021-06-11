@@ -2,6 +2,9 @@
 
 namespace Core\Http;
 
+/**
+ * Session : use to mainpule superglobal SESSION
+ */
 class Session
 {
     /**

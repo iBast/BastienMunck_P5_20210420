@@ -2,10 +2,14 @@
 
 namespace App\Controller\Admin;
 
+use App\App;
 use Core\Form\Form;
 use App\Action\CategoryCheck;
 use App\Manager\Admin\CategoryManager;
 
+/**
+ * CategoriesController
+ */
 class CategoriesController extends AdminController
 {
     protected $request;
@@ -22,6 +26,7 @@ class CategoriesController extends AdminController
 
     public function index()
     {
+        App::getInstance()->setTitle("Gestion des catégories");
         $categories = $this->category->all();
         $form = new Form();
         $this->render('admin.categories.index', compact('categories', 'form'));
@@ -29,6 +34,7 @@ class CategoriesController extends AdminController
 
     public function add()
     {
+        App::getInstance()->setTitle("Ajout d'une catégorie");
         if ($this->request->hasPost()) {
             $categoryCheck = new CategoryCheck($this->request, $this->session);
             $errorMessage = $categoryCheck->getErrorMessage();
@@ -46,6 +52,7 @@ class CategoriesController extends AdminController
 
     public function edit()
     {
+        App::getInstance()->setTitle("Edition d'une catégorie");
         if ($this->request->hasPost()) {
             $categoryCheck = new CategoryCheck($this->request, $this->session);
             $errorMessage = $categoryCheck->getErrorMessage();

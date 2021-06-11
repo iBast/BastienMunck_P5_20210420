@@ -7,6 +7,9 @@ use Core\Form\Form;
 use App\Action\PostCheck;
 use App\Manager\Admin\PostManager;
 
+/**
+ * PostsController
+ */
 class PostsController extends AdminController
 {
     protected $request;
@@ -23,6 +26,7 @@ class PostsController extends AdminController
 
     public function index()
     {
+        App::getInstance()->setTitle("Gestion des articles");
         $posts = $this->post->last();
         $categories = App::getInstance()->getTable('Category')->all();
         $users = App::getInstance()->getTable('user')->all();
@@ -32,6 +36,7 @@ class PostsController extends AdminController
 
     public function add()
     {
+        App::getInstance()->setTitle("Ajout d'un article");
         if ($this->request->hasPost()) {
             $postCheck = new PostCheck($this->request, $this->session);
             $errorMessage = $postCheck->getErrorMessage();
@@ -52,6 +57,7 @@ class PostsController extends AdminController
 
     public function edit()
     {
+        App::getInstance()->setTitle("Edition d'un article");
         if ($this->request->hasPost()) {
             $postCheck = new PostCheck($this->request, $this->session);
             $errorMessage = $postCheck->getErrorMessage();

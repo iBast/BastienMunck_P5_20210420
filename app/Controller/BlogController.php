@@ -8,6 +8,9 @@ use App\Action\CommentCheck;
 use App\Action\DeleteComCheck;
 use App\Controller\AppController;
 
+/**
+ * BlogController
+ */
 class BlogController extends AppController
 {
 
@@ -19,15 +22,23 @@ class BlogController extends AppController
         $this->loadModel('comment');
     }
 
+    /**
+     * index show blog index
+     */
     public function index()
     {
+        App::getInstance()->setTitle("Blog");
         $posts = $this->post->lastPublished();
         $categories = App::getInstance()->getTable('Category')->all();
         $this->render('blog.index', compact('posts', 'categories'));
     }
 
+    /**
+     * category : show blog by a given category
+     */
     public function category()
     {
+        App::getInstance()->setTitle("Blog");
         $category = $this->category->find($this->request->getGetValue('id'));
         if ($category === false) {
             $this->notFound();
@@ -38,13 +49,17 @@ class BlogController extends AppController
         $this->render('blog.category', compact('posts', 'categories', 'category'));
     }
 
+    /**
+     * show : show a blog post
+     */
     public function show()
     {
+        App::getInstance()->setTitle("Blog - Article");
         $post = $this->post->findWithCategory($this->request->getGetValue('id'));
         if ($post === false) {
             $this->notFound();
         }
-        if ($post->published != 1 & $this->session->get('role') < 2) {
+        if ($post->published != POST_PUBLISHED & $this->session->get('role') < ROLE_ADMIN) {
             $this->flash->danger('Cet article n\'est pas publié');
             return $this->redirect('index.php?p=blog.index');
         }
@@ -58,8 +73,12 @@ class BlogController extends AppController
         $this->render('blog.show', compact('post', 'date', 'heure', 'comments', 'session', 'form'));
     }
 
+    /**
+     * addcomment to a blog post
+     */
     public function addcomment()
     {
+        App::getInstance()->setTitle("Ajouter un  commentaire");
         if ($this->request->hasPost()) {
             $commentCheck = new CommentCheck($this->request, $this->session);
             $errorMessage = $commentCheck->getErrorMessage();
@@ -78,9 +97,11 @@ class BlogController extends AppController
         }
     }
 
+    /**
+     * deleteComment from a blog post 
+     */
     public function deleteComment()
     {
-
         if ($this->request->hasPost()) {
             $comment = $this->comment->find($this->request->getPostValue('id'));
             $user = $this->session->get('auth');

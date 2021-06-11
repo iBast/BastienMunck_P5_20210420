@@ -2,6 +2,11 @@
 
 namespace Core\Http;
 
+/**
+ * ImgUpload 
+ * 
+ * JPEG only, crop an image to a square
+ */
 class ImgUpload
 {
     private $directory;

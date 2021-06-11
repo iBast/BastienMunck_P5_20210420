@@ -7,6 +7,9 @@ use Core\Form\Form;
 use App\Action\UpdateAdminCheck;
 use App\Manager\Admin\UserManager;
 
+/**
+ * UsersController
+ */
 class UsersController extends AdminController
 {
     protected $request;
@@ -22,6 +25,7 @@ class UsersController extends AdminController
 
     public function index()
     {
+        App::getInstance()->setTitle("Gestion des utilisateurs");
         $users = $this->user->all();
         $this->render('admin.users.index', compact('users'));
     }

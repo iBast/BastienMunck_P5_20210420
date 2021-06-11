@@ -5,7 +5,7 @@ namespace Core\Form;
 use Core\Http\Session;
 
 /**
- * 
+ *  Build form
  */
 class Form
 {
@@ -20,11 +20,23 @@ class Form
         $this->data = $data;
     }
 
-    protected function surround($html)
+    /**
+     * surround a string with defined tag
+     *
+     * @param  string $html
+     * @return string
+     */
+    protected function surround($html): string
     {
         return "<{$this->surround}>{$html}</{$this->surround}>";
     }
 
+    /**
+     * getValue return values from an object or an array
+     *
+     * @param  mixed $index
+     * @return mixed
+     */
     protected function getValue($index)
     {
         if (is_object($this->data)) {
@@ -33,6 +45,14 @@ class Form
         return isset($this->data[$index]) ? $this->data[$index] : null;
     }
 
+    /**
+     * From input 
+     *
+     * @param  string $name
+     * @param  string $label
+     * @param  array $options
+     * @return string
+     */
     public function input(string $name, ?string $label, array $options = [])
     {
         $type = isset($options['type']) ? $options['type'] : 'text';
@@ -50,7 +70,15 @@ class Form
         return $this->surround($label . $input);
     }
 
-    public function select($name, ?string $label, $options)
+    /**
+     * From select
+     *
+     * @param  string $name
+     * @param  string $label
+     * @param  array $options
+     * @return string
+     */
+    public function select(string $name, ?string $label, array $options)
     {
         $label = isset($label) ?  '<label>' . $label . ' : </label> <br>' : '';
         $input = '<select  name=' . $name . '>';
@@ -65,6 +93,14 @@ class Form
         return $this->surround($label . $input);
     }
 
+    /**
+     * toggle : checkbox 
+     *
+     * @param  string $name
+     * @param  string $label
+     * @param  bool $checked
+     * @return string
+     */
     public function toggle($name, $label, ?string $checked)
     {
         $checked = isset($checked) ? $checked : '';
@@ -77,7 +113,15 @@ class Form
         return $this->surround($input);
     }
 
-    public function submit($label)
+    /**
+     * submit a form 
+     * 
+     * has hidden inputs, use token for form validation through the class FormCheck
+     *
+     * @param  string $label
+     * @return string
+     */
+    public function submit(string $label)
     {
         $this->newToken();
         $submit = $this->input('tokenName', null, ['type' => 'hidden', 'value' => $this->tokenName]);
@@ -87,6 +131,11 @@ class Form
         return $submit;
     }
 
+    /**
+     * newToken generate token
+     *
+     * @return void
+     */
     private function newToken()
     {
         $this->token = bin2hex(random_bytes(16));

@@ -6,6 +6,11 @@ use App\App;
 use Core\Controller\Controller;
 
 
+/**
+ * AppController
+ * 
+ * Extends the core controller
+ */
 class AppController extends Controller
 {
     protected $template = 'default';

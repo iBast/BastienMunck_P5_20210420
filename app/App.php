@@ -49,15 +49,21 @@ class App
         return $this->db_instance;
     }
 
-
-    public function setTitle($title)
+    /**
+     * setTitle : page title in browser
+     *
+     * @param  string $title
+     * @return void
+     */
+    public function setTitle($title): void
     {
         $this->title = $title;
     }
+
     /**
      * Method run
      * 
-     * 
+     * start session
      */
     public static function run()
     {

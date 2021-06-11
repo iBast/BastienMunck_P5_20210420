@@ -8,6 +8,12 @@ class CommentTable extends Table
 {
     protected $table = "comments";
 
+    /**
+     * listValidated form a post
+     *
+     * @param  int $post_id
+     * @return void
+     */
     public function listValidated($post_id)
     {
         return $this->query(
@@ -41,6 +47,11 @@ class CommentTable extends Table
         );
     }
 
+    /**
+     * allWithJoin find all comments with author and post title
+     *
+     * @return void
+     */
     public function allWithJoin()
     {
         return $this->query(

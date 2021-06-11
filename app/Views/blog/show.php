@@ -5,10 +5,13 @@
         <p class="center"><em>Dans <?= $post->category; ?></em></p>
         <p class="center"><em>Par <?= $post->author; ?> - Mise à jour le : <?= $date ?> à <?= $heure; ?></em></p>
         <br><br>
-        <p><?= $post->chapo; ?>
+        <p>
+        <pre><?= $post->chapo; ?></pre>
         </p>
         <br><br><br>
-        <p><?= $post->content; ?></p>
+        <p>
+        <pre><?= $post->content; ?></pre>
+        </p>
 
     </article>
     <h2>Commentaires :</h2>
@@ -22,8 +25,8 @@
             <div class="comment">
                 <div><img src="./img/avatar/<?= $comment->authorpic; ?>" class="avatar-comment" alt="Photo de profil"></div>
                 <div>
-                    <p>De : <b><?= $comment->author; ?></b> Posté le : <em><?= date('d/m/y', strtotime($comment->date)); ?></em></p>
-                    <p><?= $comment->content; ?></p>
+                    <p>De : <b><?= htmlspecialchars($comment->author) ?></b> Posté le : <em><?= date('d/m/y', strtotime($comment->date)); ?></em></p>
+                    <p><?= htmlspecialchars($comment->content) ?></p>
                 </div>
 
 
@@ -45,7 +48,7 @@
         <?php
         } else {
         ?>
-            <p>Votre compte est toujours en attente de validation <br> <a href="?p=users.resendmail">Cliquez ici pour renvoyer le mail d\'activation</a></p>
+            <p>Votre compte est toujours en attente de validation <br> <a href="?p=users.resendmail">Cliquez ici pour renvoyer le mail d'activation</a></p>
         <?php
         }
     } else {
