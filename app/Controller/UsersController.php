@@ -57,7 +57,7 @@ class UsersController extends AppController
             if ($errorMessage == null) {
                 $this->dbAuth->login($this->request->getPostValue('username'), $this->request->getPostValue('password'));
                 if ($this->session->get('auth') != null) {
-                    return $this->redirect('?p=users.account');
+                    return $this->redirect('?p=blog.index');
                 }
                 return $this->redirect('?p=users.changePassword');
             }
@@ -132,6 +132,7 @@ class UsersController extends AppController
         if ($user) {
             $mail = new UserMail;
             $mail->signupMail($user->email, $user->username, $user->token);
+            $this->flash->success('Un nouvel email vous a été envoyé');
             $this->redirect('?p=users.account');
         }
         $this->flash->danger('Aucun n\'utilisateur n\'a été renseigné');

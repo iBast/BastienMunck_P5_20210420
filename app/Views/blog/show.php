@@ -25,8 +25,8 @@
             <div class="comment">
                 <div><img src="./img/avatar/<?= $comment->authorpic; ?>" class="avatar-comment" alt="Photo de profil"></div>
                 <div>
-                    <p>De : <b><?= $comment->author; ?></b> Posté le : <em><?= date('d/m/y', strtotime($comment->date)); ?></em></p>
-                    <p><?= $comment->content; ?></p>
+                    <p>De : <b><?= htmlspecialchars($comment->author) ?></b> Posté le : <em><?= date('d/m/y', strtotime($comment->date)); ?></em></p>
+                    <p><?= htmlspecialchars($comment->content) ?></p>
                 </div>
 
 
@@ -48,7 +48,7 @@
         <?php
         } else {
         ?>
-            <p>Votre compte est toujours en attente de validation <br> <a href="?p=users.resendmail">Cliquez ici pour renvoyer le mail d\'activation</a></p>
+            <p>Votre compte est toujours en attente de validation <br> <a href="?p=users.resendmail">Cliquez ici pour renvoyer le mail d'activation</a></p>
         <?php
         }
     } else {

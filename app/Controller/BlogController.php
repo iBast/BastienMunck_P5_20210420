@@ -22,6 +22,9 @@ class BlogController extends AppController
         $this->loadModel('comment');
     }
 
+    /**
+     * index show blog index
+     */
     public function index()
     {
         App::getInstance()->setTitle("Blog");
@@ -30,6 +33,9 @@ class BlogController extends AppController
         $this->render('blog.index', compact('posts', 'categories'));
     }
 
+    /**
+     * category : show blog by a given category
+     */
     public function category()
     {
         App::getInstance()->setTitle("Blog");
@@ -43,6 +49,9 @@ class BlogController extends AppController
         $this->render('blog.category', compact('posts', 'categories', 'category'));
     }
 
+    /**
+     * show : show a blog post
+     */
     public function show()
     {
         App::getInstance()->setTitle("Blog - Article");
@@ -64,6 +73,9 @@ class BlogController extends AppController
         $this->render('blog.show', compact('post', 'date', 'heure', 'comments', 'session', 'form'));
     }
 
+    /**
+     * addcomment to a blog post
+     */
     public function addcomment()
     {
         App::getInstance()->setTitle("Ajouter un  commentaire");
@@ -85,6 +97,9 @@ class BlogController extends AppController
         }
     }
 
+    /**
+     * deleteComment from a blog post 
+     */
     public function deleteComment()
     {
         if ($this->request->hasPost()) {

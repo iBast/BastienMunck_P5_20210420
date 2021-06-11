@@ -12,6 +12,8 @@
     <meta property="og:url" content="https://bastienmunck.fr">
     <meta property="og:image" content="https://bastienmunck.fr/img/logo.png">
     <meta property="og:site_name" content="Bastien Munck - Développeur PHP">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
@@ -55,7 +57,6 @@
             <?php
             if ($this->session->get('flash') != null) {
             ?>
-
                 <div class="flashMessages">
                     <?php
                     if ($this->flash->get('danger')) : ?>
@@ -84,8 +85,6 @@
                 </div>
         <?php endif;
                 } ?>
-
-
         <?= $content; ?>
         </div>
         <footer>
@@ -104,10 +103,17 @@
             </details>
             <details>
                 <summary>Mon compte</summary>
-                <a href="?p=users.signup">Inscription</a>
-                <a href="?p=users.login">Connexion</a>
-                <a href="?p=users.logout">Déconnexion</a>
-                <a href="?p=users.account">Mon compte</a>
+                <?php
+                if ($this->session->get('auth') != null) {
+                ?>
+                    <a href="?p=users.logout">Déconnexion</a>
+                    <a href="?p=users.account">Mon compte</a>
+                <?php
+                } else {
+                ?>
+                    <a href="?p=users.signup">Inscription</a>
+                    <a href="?p=users.login">Connexion</a>
+                <?php } ?>
                 <a href="?p=admin.dashboard.index">Administration</a>
             </details>
         </footer>

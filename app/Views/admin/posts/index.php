@@ -13,7 +13,7 @@
         </tr>
         <?php foreach ($posts as $post) : ?>
             <tr>
-                <td><?= htmlspecialchars($post->title); ?></td>
+                <td><a href="?p=blog.show&id=<?= $post->id ?>"><?= htmlspecialchars($post->title); ?></a></td>
                 <td><?= htmlspecialchars($post->category); ?></td>
                 <td><?= htmlspecialchars($post->author); ?></td>
                 <td><?= POST_STATUS[(htmlspecialchars($post->published))]; ?></td>

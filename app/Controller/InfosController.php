@@ -27,6 +27,9 @@ class InfosController extends AppController
     {
         $this->render('infos.forbidden');
     }
+    /**
+     * home : homepage 
+     */
     public function home()
     {
         if ($this->request->hasPost()) {

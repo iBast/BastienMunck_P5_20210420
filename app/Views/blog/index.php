@@ -11,7 +11,7 @@
         <?php foreach ($posts as $post) : ?>
             <a href="<?= $post->url; ?>" class="article">
                 <article>
-                    <h2><?= $post->title; ?></h2>
+                    <h2><?= htmlspecialchars($post->title) ?></h2>
                     <em>Dans : <?= $post->category; ?></em><br>
                     <em>Denière modification :
                         <?php $time = strtotime($post->lastUpdate);
@@ -21,7 +21,7 @@
                         le <?= $date; ?> à <?= $heure; ?>
                     </em> <br>
                     <br>
-                    <p><?= $post->chapo; ?>
+                    <p><?= htmlspecialchars($post->chapo) ?>
                     </p>
                 </article>
             </a>
