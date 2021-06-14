@@ -40,7 +40,7 @@ try {
         $controller->$action();
     } else {
         $controller = new \App\Controller\InfosController($session, $flash, $request, $dbAuth);
-        $controller->NotFound();
+        $controller->notFound();
     }
 } catch (Exception $e) {
     $errors = $e->getMessage();

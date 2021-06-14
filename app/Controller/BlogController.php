@@ -4,9 +4,12 @@ namespace App\Controller;
 
 use App\App;
 use Core\Form\Form;
+use Core\Http\Paginator;
 use App\Action\CommentCheck;
 use App\Action\DeleteComCheck;
 use App\Controller\AppController;
+
+
 
 /**
  * BlogController
@@ -14,12 +17,15 @@ use App\Controller\AppController;
 class BlogController extends AppController
 {
 
+    private $paginator;
+
     public function __construct($session, $flash, $request, $dbAuth)
     {
         parent::__construct($session, $flash, $request, $dbAuth);
         $this->loadModel('post');
         $this->loadModel('category');
         $this->loadModel('comment');
+        $this->paginator = new Paginator($request, $flash);
     }
 
     /**
@@ -28,9 +34,16 @@ class BlogController extends AppController
     public function index()
     {
         App::getInstance()->setTitle("Blog");
-        $posts = $this->post->lastPublished();
+        $this->paginator->setPerPage(3);
+        $perPage = $this->paginator->getPerPage();
+        $count = $this->post->countTable();
+        $posts = $this->post->lastPublished($perPage, $this->paginator->setOffset($perPage, $count[0]->id));
+        if ($this->paginator->isError()) {
+            $this->notFound();
+        }
         $categories = App::getInstance()->getTable('Category')->all();
-        $this->render('blog.index', compact('posts', 'categories'));
+        $printCommands = $this->paginator->printCommands('?p=blog.index');
+        $this->render('blog.index', compact('posts', 'categories', 'printCommands'));
     }
 
     /**
@@ -39,14 +52,17 @@ class BlogController extends AppController
     public function category()
     {
         App::getInstance()->setTitle("Blog");
+        $this->paginator->setPerPage(3);
+        $perPage = $this->paginator->getPerPage();
+        $count = $this->post->count('category', $this->request->getGetValue('id'));
         $category = $this->category->find($this->request->getGetValue('id'));
         if ($category === false) {
             $this->notFound();
         }
-        $posts = $this->post->lastByCategory($this->request->getGetValue('id'));
+        $posts = $this->post->lastByCategory($this->request->getGetValue('id'), $perPage, $this->paginator->setOffset($perPage, $count->category));
         $categories = $this->category->all();
-
-        $this->render('blog.category', compact('posts', 'categories', 'category'));
+        $printCommands = $this->paginator->printCommands('?p=blog.category&id=' . $this->request->getGetValue('id') . '');
+        $this->render('blog.category', compact('posts', 'categories', 'category', 'printCommands'));
     }
 
     /**
