@@ -77,7 +77,7 @@ class MysqlDatabase extends Database
      * @param  bool $one
      * @return mixed
      */
-    public function prepare($statement, $attributes, $class_name = null, $one = false, $assoc = null)
+    public function prepare($statement, $attributes, $class_name = null, $one = false)
     {
         $req = $this->getPDO()->prepare($statement);
         $res = $req->execute($attributes);

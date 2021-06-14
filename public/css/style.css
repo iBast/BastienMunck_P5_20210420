@@ -251,6 +251,7 @@ h1 {
 .btn-main:hover {
   background-color: #ffdeb3;
   border-color: #ffdeb3;
+  color: #597080;
 }
 
 .btn-outline:hover {

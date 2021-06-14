@@ -34,7 +34,7 @@ class BlogController extends AppController
     public function index()
     {
         App::getInstance()->setTitle("Blog");
-        $this->paginator->setPerPage(3);
+        $this->paginator->setPerPage(6);
         $perPage = $this->paginator->getPerPage();
         $count = $this->post->countTable();
         $posts = $this->post->lastPublished($perPage, $this->paginator->setOffset($perPage, $count[0]->id));
@@ -52,7 +52,7 @@ class BlogController extends AppController
     public function category()
     {
         App::getInstance()->setTitle("Blog");
-        $this->paginator->setPerPage(3);
+        $this->paginator->setPerPage(6);
         $perPage = $this->paginator->getPerPage();
         $count = $this->post->count('category', $this->request->getGetValue('id'));
         $category = $this->category->find($this->request->getGetValue('id'));
