@@ -5,6 +5,7 @@
         <p><b>Catégories :</b> <?php foreach ($categories as $categorie) : ?>
                 <a href="<?= $categorie->url; ?>"><?= $categorie->title; ?></a> -
             <?php endforeach; ?>
+            <a href="?p=blog.index">Toutes</a>
         </p>
     </div>
     <div class="articles">
@@ -27,4 +28,5 @@
             </a>
         <?php endforeach; ?>
     </div>
+    <?= $printCommands ?>
 </section>

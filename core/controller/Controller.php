@@ -36,7 +36,7 @@ class Controller
      *
      * redirect user when a page hasn't been found
      */
-    public function NotFound()
+    public function notFound()
     {
         header('Location:./index.php?p=infos.notfound');
         exit;
@@ -64,6 +64,7 @@ class Controller
     protected function redirect($url): void
     {
         header("Location: " . $url);
+        http_response_code(301);
         exit;
     }
 }

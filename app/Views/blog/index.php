@@ -5,6 +5,7 @@
         <p><b>Catégories :</b> <?php foreach ($categories as $categorie) : ?>
                 <a href="<?= $categorie->url; ?>"><?= $categorie->title; ?></a> -
             <?php endforeach; ?>
+            <a href="?p=blog.index">Toutes</a>
         </p>
     </div>
     <div class="articles">
@@ -14,11 +15,8 @@
                     <h2><?= htmlspecialchars($post->title) ?></h2>
                     <em>Dans : <?= $post->category; ?></em><br>
                     <em>Denière modification :
-                        <?php $time = strtotime($post->lastUpdate);
-                        $date = date("d/m/y", $time);
-                        $heure = date("H:i", $time)
-                        ?>
-                        le <?= $date; ?> à <?= $heure; ?>
+                        le <?= date("d/m/y", strtotime($post->lastUpdate)); ?>
+                        à <?= date("H:i", strtotime($post->lastUpdate)) ?>
                     </em> <br>
                     <br>
                     <p><?= htmlspecialchars($post->chapo) ?>
@@ -27,4 +25,5 @@
             </a>
         <?php endforeach; ?>
     </div>
+    <?= $printCommands ?>
 </section>
