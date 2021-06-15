@@ -45,7 +45,7 @@ class DBAuth
      */
     public function login($username): bool
     {
-
+        session_regenerate_id();
         $user = $this->database->prepare('SELECT * FROM users WHERE username = ?', [$username], NULL, true);
         if ($user->passwordLock == 0) {
             $this->session->set('auth', $user->id);
