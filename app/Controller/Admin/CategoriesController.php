@@ -21,7 +21,7 @@ class CategoriesController extends AdminController
     {
         parent::__construct($session, $flash, $request, $dbAuth);
         $this->loadModel('category');
-        $this->manager = new CategoryManager($request, $session, $flash);
+        $this->manager = new CategoryManager($request);
     }
 
     public function index()

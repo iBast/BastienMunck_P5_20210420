@@ -17,7 +17,7 @@ class InfosController extends AppController
         $this->flash = $flash;
         $this->request = $request;
         $this->dbAuth = $dbAuth;
-        $this->manager = new InfosManager($this->request, $this->session, $this->flash);
+        $this->manager = new InfosManager($this->request);
     }
     public function notFound()
     {

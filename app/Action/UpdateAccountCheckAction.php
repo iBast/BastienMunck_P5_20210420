@@ -2,7 +2,6 @@
 
 namespace App\Action;
 
-use App\App;
 use Core\Form\FormCheck;
 use Core\Form\FormCheckInterface;
 

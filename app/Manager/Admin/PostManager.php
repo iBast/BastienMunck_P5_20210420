@@ -10,13 +10,12 @@ class PostManager
 
     private $request;
     private $session;
-    private $flash;
 
-    public function __construct($request, $session, $flash)
+
+    public function __construct($request, $session)
     {
         $this->request = $request;
         $this->session = $session;
-        $this->flash = $flash;
         $this->post = App::getInstance()->getTable('post');
     }
 

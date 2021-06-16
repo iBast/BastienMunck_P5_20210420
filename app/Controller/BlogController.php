@@ -25,7 +25,7 @@ class BlogController extends AppController
         $this->loadModel('category');
         $this->loadModel('comment');
         $this->paginator = new Paginator($request, $flash);
-        $this->manager = new BlogManager($request, $session, $flash);
+        $this->manager = new BlogManager($request, $session);
     }
 
     /**
@@ -82,7 +82,7 @@ class BlogController extends AppController
         $session = $this->session;
         $comments = $this->comment->listValidated($this->request->getGetValue('id'));
         $form = new Form();
-        $this->render('blog.show', compact('post', 'date', 'heure', 'comments', 'session', 'form'));
+        $this->render('blog.show', compact('post', 'comments', 'session', 'form'));
     }
 
     /**
