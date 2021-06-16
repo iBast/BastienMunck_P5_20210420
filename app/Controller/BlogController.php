@@ -8,8 +8,7 @@ use Core\Http\Paginator;
 use App\Action\CommentCheck;
 use App\Action\DeleteComCheck;
 use App\Controller\AppController;
-
-
+use App\Manager\BlogManager;
 
 /**
  * BlogController
@@ -26,6 +25,7 @@ class BlogController extends AppController
         $this->loadModel('category');
         $this->loadModel('comment');
         $this->paginator = new Paginator($request, $flash);
+        $this->manager = new BlogManager($request, $session, $flash);
     }
 
     /**
@@ -79,11 +79,7 @@ class BlogController extends AppController
             $this->flash->danger('Cet article n\'est pas publié');
             return $this->redirect('index.php?p=blog.index');
         }
-        $time = strtotime($post->lastUpdate);
-        $date = date("d/m/y", $time);
-        $heure = date("H:i", $time);
         $session = $this->session;
-
         $comments = $this->comment->listValidated($this->request->getGetValue('id'));
         $form = new Form();
         $this->render('blog.show', compact('post', 'date', 'heure', 'comments', 'session', 'form'));
@@ -100,12 +96,7 @@ class BlogController extends AppController
             $errorMessage = $commentCheck->getErrorMessage();
             $this->flash->danger($errorMessage);
             if ($errorMessage == null) {
-                $comment = [
-                    'author' => $this->session->get('auth'),
-                    'post' => $this->request->getPostValue('post'),
-                    'content' => $this->request->getPostValue('content'),
-                ];
-                $this->comment->create($comment);
+                $this->manager->createComment();
                 $this->flash->success('Le commentaire a été enregistré, un administrateur le validera bientôt');
 
                 return $this->redirect('?p=blog.show&id=' . $this->request->getPostValue('post') . '');

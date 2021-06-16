@@ -2,8 +2,8 @@
 
     <article class="blogpost">
         <h1><?= $post->title; ?></h1>
-        <p class="center"><em>Dans <?= $post->category; ?></em></p>
-        <p class="center"><em>Par <?= $post->author; ?> - Mise à jour le : <?= $date ?> à <?= $heure; ?></em></p>
+        <p class="center"><em>Dans <?= htmlspecialchars($post->category); ?></em></p>
+        <p class="center"><em>Par <?= htmlspecialchars($post->author); ?> - Mise à jour le : <?= date('d/m/y', strtotime($post->lastUpdate)) ?> à <?= date('H:i', strtotime($post->lastUpdate)) ?></em></p>
         <br><br>
         <p>
         <pre><?= $post->chapo; ?></pre>

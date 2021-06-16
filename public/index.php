@@ -6,6 +6,9 @@ use Core\Http\Request;
 use Core\Http\FlashMessage;
 
 try {
+    ini_set('session.cookie_secure', 1);
+    ini_set('session.cookie_httponly', 1);
+    ini_set('session.use_only_cookies', 1);
     define('ROOT', dirname(__DIR__));
     require_once ROOT . '/vendor/autoload.php';
     $session = new Session;
