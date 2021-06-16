@@ -21,7 +21,7 @@ class PostsController extends AdminController
     {
         parent::__construct($session, $flash, $request, $dbAuth);
         $this->loadModel('post');
-        $this->manager = new PostManager($request, $session, $flash);
+        $this->manager = new PostManager($request, $session);
     }
 
     public function index()

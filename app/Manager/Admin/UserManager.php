@@ -3,7 +3,6 @@
 namespace App\Manager\Admin;
 
 use App\App;
-use Core\Http\Request;
 use App\Action\UserMail;
 use Core\Http\ImgUpload;
 
