@@ -1,0 +1,8 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/blog.bastienmunck.fr/
+    - /bin/cp -R App $DEPLOYPATH
+    - /bin/cp -R Core $DEPLOYPATH
+    - /bin/cp -R config $DEPLOYPATH
+    - /bin/cp -R public $DEPLOYPATH

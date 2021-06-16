@@ -1,0 +1,19 @@
+{
+    "name": "bastienmunck/bastien-munck_p5_20210420",
+    "authors": [
+        {
+            "name": "Bastien",
+            "email": "bastien.munck@me.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "App",
+            "Core\\": "Core"
+        }
+    },
+    "require": {
+        "composer/composer": "^2.0",
+        "swiftmailer/swiftmailer": "^6.0"
+    }
+}

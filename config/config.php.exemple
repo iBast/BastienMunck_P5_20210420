@@ -1,0 +1,47 @@
+<?php
+define('USER_ROLE', [
+    '0' => 'Membre non validé',
+    '1' => 'Membre',
+    '2' => 'Administrateur'
+]);
+
+define('ROLE_NEWBIE', 0);
+define('ROLE_USER', 1);
+define('ROLE_ADMIN', 2);
+
+define('POST_STATUS', [
+    '0' => 'Non publié',
+    '1' => 'Publié',
+]);
+
+define('POST_DRAFT', 0);
+define('POST_PUBLISHED', 1);
+
+define('COMMENT_STATUS', [
+    '0' => 'En attente de validation',
+    '1' => 'Validé',
+    '2' => 'Rejeté'
+]);
+
+define('COMMENT_DRAFT', 0);
+define('COMMENT_VALIDATED', 1);
+define('COMMENT_REJECTED', 2);
+
+define('SITE_URL', 'URL');
+
+return array(
+
+    "db_user" => "root",
+    "db_pass" => "root",
+    "db_host" => "localhost",
+    "db_name" => "blog",
+    "smtp_username" => "",
+    "smtp_mail" => "",
+    "smtp_pass" => "",
+    "smtp_alias" => "",
+    "smtp_server" => "",
+    "smtp_port" => "",
+    "smtp_encrypt" => null, 
+
+
+);
