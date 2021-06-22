@@ -12,10 +12,7 @@ use App\Manager\Admin\PostManager;
  */
 class PostsController extends AdminController
 {
-    protected $request;
-    protected $session;
-    protected $flash;
-    protected $dbAuth;
+    private $manager;
 
     public function __construct($session, $flash, $request, $dbAuth)
     {

@@ -14,10 +14,6 @@ use Core\Controller\Controller;
 class AppController extends Controller
 {
     protected $template = 'default';
-    protected $request;
-    protected $session;
-    protected $flash;
-    protected $dbAuth;
 
     public function __construct($session, $flash, $request, $dbAuth)
     {

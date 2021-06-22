@@ -12,11 +12,6 @@ use App\Manager\Admin\CategoryManager;
  */
 class CategoriesController extends AdminController
 {
-    protected $request;
-    protected $session;
-    protected $flash;
-    protected $dbAuth;
-
     public function __construct($session, $flash, $request, $dbAuth)
     {
         parent::__construct($session, $flash, $request, $dbAuth);

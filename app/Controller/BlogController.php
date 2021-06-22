@@ -17,6 +17,7 @@ class BlogController extends AppController
 {
 
     private $paginator;
+    private $manager;
 
     public function __construct($session, $flash, $request, $dbAuth)
     {

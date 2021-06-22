@@ -9,10 +9,6 @@ use App\App;
  */
 class DashboardController extends AdminController
 {
-    protected $request;
-    protected $session;
-    protected $flash;
-    protected $dbAuth;
     public function __construct($session, $flash, $request, $dbAuth)
     {
         parent::__construct($session, $flash, $request, $dbAuth);

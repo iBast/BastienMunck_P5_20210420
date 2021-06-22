@@ -14,6 +14,7 @@ use Core\Http\FlashMessage;
 class DBAuth
 {
     private $flash;
+    private $session;
 
     public function __construct(Database $database, Session $session)
     {
