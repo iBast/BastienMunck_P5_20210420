@@ -7,7 +7,7 @@ Professional PHP Blog project for the OpenClassrooms training program.
 ## Informations
 The goal of this project is to create a personal blog from scratch.
 
-The project is coded in **PHP 7, HTML 5 and CSS3**
+The project is coded in **PHP 7.4, HTML 5 and CSS3**
 
 Dependencies trough **Composer**, 
 
