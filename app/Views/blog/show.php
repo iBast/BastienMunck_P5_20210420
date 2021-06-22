@@ -1,16 +1,16 @@
 <section class="blog-post">
 
     <article class="blogpost">
-        <h1><?= $post->title; ?></h1>
+        <h1><?= htmlspecialchars($post->title); ?></h1>
         <p class="center"><em>Dans <?= htmlspecialchars($post->category); ?></em></p>
         <p class="center"><em>Par <?= htmlspecialchars($post->author); ?> - Mise à jour le : <?= date('d/m/y', strtotime($post->lastUpdate)) ?> à <?= date('H:i', strtotime($post->lastUpdate)) ?></em></p>
         <br><br>
         <p>
-        <pre><?= $post->chapo; ?></pre>
+        <pre><?= htmlspecialchars($post->chapo); ?></pre>
         </p>
         <br><br><br>
         <p>
-        <pre><?= $post->content; ?></pre>
+        <pre><?= htmlspecialchars($post->content); ?></pre>
         </p>
 
     </article>

@@ -12,10 +12,9 @@ use App\Manager\Admin\UserManager;
  */
 class UsersController extends AdminController
 {
-    protected $request;
-    protected $session;
-    protected $flash;
-    protected $dbAuth;
+
+    private $manager;
+
     public function __construct($session, $flash, $request, $dbAuth)
     {
         parent::__construct($session, $flash, $request, $dbAuth);

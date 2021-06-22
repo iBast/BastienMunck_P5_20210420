@@ -24,4 +24,3 @@ All informations on this project can be found on the project's [github wiki](htt
 * Rename config/config.php.exemple to config/config.php
 * Edit this file using your information (from line 30)
 * use "blog_P5.sql" file to set up the database
-* You can also deploy the web site on cPanel using the file .cpanel.yml

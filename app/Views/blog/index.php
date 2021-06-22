@@ -3,7 +3,7 @@
     <div class="account-creation center">
 
         <p><b>Catégories :</b> <?php foreach ($categories as $categorie) : ?>
-                <a href="<?= $categorie->url; ?>"><?= $categorie->title; ?></a> -
+                <a href="<?= $categorie->url; ?>"><?= htmlspecialchars($categorie->title); ?></a> -
             <?php endforeach; ?>
             <a href="?p=blog.index">Toutes</a>
         </p>
@@ -13,7 +13,7 @@
             <a href="<?= $post->url; ?>" class="article">
                 <article>
                     <h2><?= htmlspecialchars($post->title) ?></h2>
-                    <em>Dans : <?= $post->category; ?></em><br>
+                    <em>Dans : <?= htmlspecialchars($post->category); ?></em><br>
                     <em>Denière modification :
                         le <?= date("d/m/y", strtotime($post->lastUpdate)); ?>
                         à <?= date("H:i", strtotime($post->lastUpdate)) ?>

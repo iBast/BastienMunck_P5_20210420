@@ -10,13 +10,10 @@ use App\Action\ContactCheckAction;
  */
 class InfosController extends AppController
 {
+    private $manager;
     public function __construct($session, $flash, $request, $dbAuth)
     {
-        parent::__construct($this->session, $this->flash, $this->request, $this->dbAuth);
-        $this->session = $session;
-        $this->flash = $flash;
-        $this->request = $request;
-        $this->dbAuth = $dbAuth;
+        parent::__construct($session, $flash, $request, $dbAuth);
         $this->manager = new InfosManager($this->request);
     }
     public function notFound()

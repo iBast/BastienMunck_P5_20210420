@@ -12,10 +12,6 @@ use App\Controller\AppController;
 class AdminController extends AppController
 {
     protected $template = 'admin';
-    protected $request;
-    protected $session;
-    protected $flash;
-    protected $dbAuth;
 
     public function __construct($session, $flash, $request, $dbAuth)
     {
