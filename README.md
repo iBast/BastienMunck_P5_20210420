@@ -21,7 +21,7 @@ All informations on this project can be found on the project's [github wiki](htt
 
 ## Instalation
 * Download or clone the [project repository](https://github.com/iBast/BastienMunck_P5_20210420)
+* Install the dependencies with [Composer](https://getcomposer.org/doc/03-cli.md#install-i)
 * Rename config/config.php.exemple to config/config.php
 * Edit this file using your information (from line 30)
 * use "blog_P5.sql" file to set up the database
-
